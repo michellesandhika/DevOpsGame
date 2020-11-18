@@ -1,25 +1,37 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter.ttk import *
-class MainWindow():
+from tkinter.messagebox import showinfo
+
+class MainWindow(Frame):
 
     def __init__(self, master):
+        Frame.__init__(self,master)
+
+        ## show scnario popup
+        self.pack()
+
+
+
         self.master = master
         self.master.resizable(False, False)
-        self.master.geometry("1300x720+0+0") 
-        
+        self.master.geometry("1300x720+0+0")
 
         self.navi = NavigateFrame(self.master)
         self.navi.pack()
         self.window = WindowFrame(self.master)
         self.window.pack(fill="both")
-        self.window.pack_propagate(False) 
+        self.window.pack_propagate(False)
 
         self.l1 = Label1(self.window)
         self.l1.pack(side=tk.TOP)
 
         self.nextButton = Next(self.window, self.nextPage)
         self.nextButton.pack(anchor = "e", side = "bottom")
+
+        ## displays popup message about airbnb scenario
+        popup_showinfo()
+        self.pack()
 
     def nextPage(self):
         self.navi.switch()
@@ -77,14 +89,27 @@ class Label1(tk.Label):
         tk.Label.__init__(self, parent, background="white", text="nothing yet")
         self.parent = parent
 
+
         
+## this function creates a popup window
+def popup_bonus():
+    win = tk.Toplevel()
+    win.wm_title("Window")
 
+    l = tk.Label(win, text="Input")
+    l.grid(row=0, column=0)
 
+    b = Button(win, text="Let's Begin", command=win.destroy)
+    b.grid(row=1, column=0)
+
+##define content of popup
+def popup_showinfo():
+    showinfo("Scenario", "Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!")
 
 
 if __name__ == '__main__':
     root = tk.Tk()
-    
+
 
     app = MainWindow(root)
     print("your screen's width x height = %d x %d (in pixels)" %(root.winfo_screenheight() , root.winfo_screenwidth() ))
