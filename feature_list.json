@@ -1,0 +1,14 @@
+{
+   "features": [
+      {
+         "feature_name":"2 step verification",
+         "lead_time": 3,
+         "error_rate": -1
+      },
+      {
+         "feature_name":"transaction verification",
+         "lead_time": 3,
+         "error_rate": -1
+      }
+   ]
+}
