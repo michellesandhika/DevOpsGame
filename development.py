@@ -13,6 +13,9 @@ def failing_rate(feature):
    # feature.fail_rate = ((random.randint(0,10) + feature.time)/2 * feature.fail_rate)/10
 
 # the code for the testing page
+
+#where the feature classes is placed later
+feature_selected = []
 point_list = [0,0,0]
 def point_increase(point_index):
    if point_list[point_index] > 10:
@@ -30,6 +33,11 @@ def point_decrease(point_index):
 def point_check():
    if sum(point_list) != 10:
       print("total should only be 10")
+   allocate_points()
+      
+def allocate_points(feature_selected, point_list):
+   for i in range(0,3):
+      feature_selected[i].fail_rate = feature_selected[i].fail_rate * (10-point_list[i])*0.1
       
       
       
