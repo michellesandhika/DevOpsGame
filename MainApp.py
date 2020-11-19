@@ -3,40 +3,77 @@ from PIL import Image, ImageTk
 from tkinter.ttk import *
 from tkinter.messagebox import showinfo
 
+
+from Idea_UI import Idea
+from Development_UI import Development
+from Testing_UI import Testing
+from Deployment_UI import Deployment
+from Production_UI import Production
+
 class MainWindow(Frame):
 
     def __init__(self, master):
         Frame.__init__(self,master)
-
+        
         ## show scnario popup
-        self.pack()
-
-
 
         self.master = master
         self.master.resizable(False, False)
         self.master.geometry("1300x720+0+0")
+        self.master.configure(bg='bisque')
 
         self.navi = NavigateFrame(self.master)
         self.navi.pack()
+        self.nextButton = Next(self.master, self.nextPage)
+        self.nextButton.pack(anchor = "s", side='right')
         self.window = WindowFrame(self.master)
-        self.window.pack(fill="both")
+        self.window.pack(side='left')
         self.window.pack_propagate(False)
 
-        self.l1 = Label1(self.window)
-        self.l1.pack(side=tk.TOP)
-
-        self.nextButton = Next(self.window, self.nextPage)
-        self.nextButton.pack(anchor = "e", side = "bottom")
+        self.numPage = 5
+        self.page = Idea(self.window)
+        self.pageIndex = 0
+        self.page.pack(side='left', padx=10, pady=10)
 
         ## displays popup message about airbnb scenario
-        popup_showinfo()
-        self.pack()
+        self.popup_showinfo()
 
     def nextPage(self):
         self.navi.switch()
+        self.page.destroy()
+        self.pageIndex = 0 if self.pageIndex == self.numPage-1 else self.pageIndex + 1
+        
+        if self.pageIndex == 0:
+            self.page = Idea(self.window) 
+        elif self.pageIndex == 1:
+            self.page = Development(self.window) 
+        elif self.pageIndex == 2:
+            self.page = Testing(self.window) 
+        elif self.pageIndex == 3:
+            self.page = Deployment(self.window) 
+        elif self.pageIndex == 4:
+            self.page = Production(self.window) 
 
+        
 
+        self.page.pack(side='left', padx=10, pady=10)
+
+    ## this function creates a popup window
+    def popup_bonus(self):
+        win = tk.Toplevel()
+        win.wm_title("Window")
+
+        l = tk.Label(win, text="Input")
+        l.grid(row=0, column=0)
+
+        b = Button(win, text="Let's Begin", command=win.destroy)
+        b.grid(row=1, column=0)
+
+    ##define content of popup
+    def popup_showinfo(self):
+        showinfo("Scenario", "Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!")
+
+        
 class NavigateFrame(tk.Frame):
 
     def __init__(self, parent):
@@ -73,9 +110,8 @@ class NavigateFrame(tk.Frame):
         self.boxes[self.current].configure(image=self.img_selected[self.current])
 class WindowFrame(tk.Frame):
     def __init__(self, parent):
-        tk.Frame.__init__(self, parent, width=1300, height=620, background="bisque")
+        tk.Frame.__init__(self, parent, width=1220, height=620, background="bisque")
         self.parent = parent
-
 
 class Next(tk.Button):
     def __init__(self, parent, command):
@@ -84,33 +120,11 @@ class Next(tk.Button):
         self.parent = parent
 
 
-class Label1(tk.Label):
-    def __init__(self, parent):
-        tk.Label.__init__(self, parent, background="white", text="nothing yet")
-        self.parent = parent
 
-
-        
-## this function creates a popup window
-def popup_bonus():
-    win = tk.Toplevel()
-    win.wm_title("Window")
-
-    l = tk.Label(win, text="Input")
-    l.grid(row=0, column=0)
-
-    b = Button(win, text="Let's Begin", command=win.destroy)
-    b.grid(row=1, column=0)
-
-##define content of popup
-def popup_showinfo():
-    showinfo("Scenario", "Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!")
 
 
 if __name__ == '__main__':
     root = tk.Tk()
-
-
     app = MainWindow(root)
     print("your screen's width x height = %d x %d (in pixels)" %(root.winfo_screenheight() , root.winfo_screenwidth() ))
     root.mainloop()
