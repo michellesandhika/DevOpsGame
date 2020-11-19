@@ -1,4 +1,3 @@
- 
 class feature:
    def __init__(self, feature_detail):
       super().__init__()
@@ -17,5 +16,3 @@ class feature:
       print("time:", self.lead_time)
       print("fail rate:", self.fail_rate)
       print("error:", self.error_messages)
-
-
