@@ -1,4 +1,4 @@
-import json
+ 
 class feature:
    def __init__(self, feature_detail):
       super().__init__()

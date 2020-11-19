@@ -1,12 +1,16 @@
 import random
 import feature_class
 
+# change the name to develop
+
 def failing_rate(feature):
    # the higher the time, the more the chances of it failing
    # the more the weighting, the more chances of it failing
    # both random int and time is 10 max, so the maximum is 
    # failing rate is not always the same, sometimes its by chance
    return ((random.randint(0,10) + feature.time)/2 * feature.fail_rate)/10
+   # I think better like this, so you dont need to change again 
+   # feature.fail_rate = ((random.randint(0,10) + feature.time)/2 * feature.fail_rate)/10
 
 # the code for the testing page
 point_list = [0,0,0]
