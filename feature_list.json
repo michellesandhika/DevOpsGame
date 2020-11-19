@@ -1,14 +1,85 @@
 {
+   "scenario":"Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!",
    "features": [
       {
-         "feature_name":"2 step verification",
+         "feature_name":"profile creation",
          "lead_time": 3,
-         "error_rate": -1
+         "weighting": 5,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "2-step verification error",
+               "fail_weight": 5
+            },
+            {
+               "message": "encryption method failed to port",
+               "fail_weight": 8
+            }
+         ]
       },
       {
-         "feature_name":"transaction verification",
+         "feature_name":"payment methods",
          "lead_time": 3,
-         "error_rate": -1
+         "weighting": 5,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "security breach while porting",
+               "fail_weight": 4
+            },
+            {
+               "message": "forgot to port possibility of paying with paypal",
+               "fail_weight": 8
+            }
+         ]
+      },
+      {
+         "feature_name":"review host feature",
+         "lead_time": 3,
+         "weighting": 5,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "database broken",
+               "fail_weight": 5
+            },
+            {
+               "message": "reading the wrong data",
+               "fail_weight": 8
+            }
+         ]
+      },
+      {
+         "feature_name":"data dashboard for hosts",
+         "lead_time": 3,
+         "weighting": 5,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "dashboard uses the wrong UI",
+               "fail_weight": 5
+            },
+            {
+               "message": "miscommunication with users on what to put in the dashboard",
+               "fail_weight": 8
+            }
+         ]
+      },
+      {
+         "feature_name":"booking history for users",
+         "lead_time": 3,
+         "weighting": 5,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "history was not stored in the database properly",
+               "fail_weight": 5
+            },
+            {
+               "message": "bug crash",
+               "fail_weight": 8
+            }
+         ]
       }
    ]
 }

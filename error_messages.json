@@ -1,0 +1,10 @@
+{
+   "bugs": {
+      "message": "Users are disappointed of the product due to too many bugs",
+      "rating": -3
+   },
+   "server_crash":{
+      "message": "There was too much failed deployment which lead to a server crash!",
+      "lead_time": 10
+   }
+}
