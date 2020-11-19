@@ -5,6 +5,8 @@ basically the devOps metrics i made a new class called devOps.py to change the d
 
 the only variable that is used throughout is featureSelected, which is the features selected.
 
+changed the error_message to customer_feedback
+
 ??? thinking which devOps to metrics to use to calculate the error...
 
 other than that, goodluck reading my code :)))
