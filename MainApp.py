@@ -4,11 +4,11 @@ from tkinter.ttk import *
 from tkinter.messagebox import showinfo
 
 
-from Idea_UI import Idea
-from Development_UI import Development
-from Testing_UI import Testing
-from Deployment_UI import Deployment
-from Production_UI import Production
+from UI.Idea_UI import Idea
+from UI.Development_UI import Development
+from UI.Testing_UI import Testing
+from UI.Deployment_UI import Deployment
+from UI.Production_UI import Production
 
 class MainWindow(Frame):
 
@@ -90,18 +90,18 @@ class NavigateFrame(tk.Frame):
 
     def get_box(self):
         self.img_normal = [
-            ImageTk.PhotoImage(Image.open("img/idea.JPG")),
-            ImageTk.PhotoImage(Image.open("img/development.JPG")),
-            ImageTk.PhotoImage(Image.open("img/testing.JPG")),
-            ImageTk.PhotoImage(Image.open("img/deployment.JPG")),
-            ImageTk.PhotoImage(Image.open("img/production.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/idea.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/development.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/testing.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/deployment.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/production.JPG")),
             ]
         self.img_selected = [
-            ImageTk.PhotoImage(Image.open("img/idea_selected.JPG")),
-            ImageTk.PhotoImage(Image.open("img/development_selected.JPG")),
-            ImageTk.PhotoImage(Image.open("img/testing_selected.JPG")),
-            ImageTk.PhotoImage(Image.open("img/deployment_selected.JPG")),
-            ImageTk.PhotoImage(Image.open("img/production_selected.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/idea_selected.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/development_selected.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/testing_selected.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/deployment_selected.JPG")),
+            ImageTk.PhotoImage(Image.open("UI/img/production_selected.JPG")),
             ]
 
     def switch(self):
@@ -115,7 +115,7 @@ class WindowFrame(tk.Frame):
 
 class Next(tk.Button):
     def __init__(self, parent, command):
-        self.nextImg = ImageTk.PhotoImage(Image.open("img/next.JPG"))
+        self.nextImg = ImageTk.PhotoImage(Image.open("UI/img/next.JPG"))
         tk.Button.__init__(self, parent, image=self.nextImg, command=command)
         self.parent = parent
 
