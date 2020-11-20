@@ -1,4 +1,4 @@
-import feature_class as fclass
+import classes.feature_class as fclass
 import json
 
 def feature_reader(feature_array):
@@ -14,7 +14,7 @@ def feature_reader(feature_array):
 
 
 # Below is how you use feature_reader 
-# feature_array = []
-# feature_reader(feature_array)
-# for i in range(0, len(feature_array)):
-#    feature_array[i].print_details()
+feature_array = []
+feature_reader(feature_array)
+for i in range(0, len(feature_array)):
+   feature_array[i].print_details()
