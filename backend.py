@@ -5,35 +5,37 @@ import random
 
 # HIIII NIC DALL AND DANIEL
 # if you wanna know more, read the READMEPLS.txt :)))
+class Backend:
+   def __init__(self):
+      self.feature_array = []
+      self.featureSelected = []
 
-feature_array = []
-
-#read from json and turn to feature class. taken idea from ideas.py
-f = open("../feature_list.json")
-data = json.load(f)
-for i in data["features"]:
-   a = fclass.feature(i)
-   feature_array.append(a) 
-   
-def returnFeatureClasses():
-   return feature_array
+      #read from json and turn to feature class. taken idea from ideas.py
+      f = open("../feature_list.json")
+      data = json.load(f)
+      for i in data["features"]:
+         a = fclass.feature(i)
+         self.feature_array.append(a) 
+         
+   def returnFeatureClasses(self):
+      return self.feature_array
 
 # Idea page #
 #############################################################################################
 # the purpose of this stage is to select features to work on
 # the harder the feature, the better it is to release fast. 
 
-featureSelected = []
-def process_selected(selected_interger):
-   if selected_interger in featureSelected:
-      featureSelected.remove(selected_interger)
-   else:
-      featureSelected.append(selected_interger)
+
+   def process_selected(self, selected_interger):
+      if selected_interger in self.featureSelected:
+         self.featureSelected.remove(selected_interger)
+      else:
+         self.featureSelected.append(selected_interger)
 
 # also kinda need a function to map the integer with the actual feature
 # need a function that changes the fail_rate to be higher or lower depending on the time it is chose to be developed.
    
-   
+'''
 # Develop # 
 ###############################################################################################
 # the purpose of this stage is to show random errors and how to handle it in the middle of production
@@ -138,3 +140,4 @@ def customer_feedback():
 
 # After the game ends #
 #################################################################################################
+'''
