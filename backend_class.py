@@ -79,29 +79,29 @@ class backend:
 
    def populate_points(self):
       for i in range(0, len(featureSelected)):
-         self.point_list.append(0)
+         self.pointList.append(0)
          
    def point_increase(self,point_index):
-      if self.point_list[point_index] > 10:
+      if self.pointList[point_index] > 10:
          print("point too much")
       else:
-         self.point_list[point_index] = self.point_list[point_index] + 1
+         self.pointList[point_index] = self.pointList[point_index] + 1
 
    def point_decrease(self,point_index):
-      if self.point_list[point_index] < 0:
+      if self.pointList[point_index] < 0:
          print("point too little")
       else:
-         point_list[point_index] = self.point_list[point_index] - 1
+         pointList[point_index] = self.pointList[point_index] - 1
          
    def point_check(self):
-      if sum(self.point_list) > 10:
+      if sum(self.pointList) > 10:
          print("total should only be 10")
       allocate_points()
             
       # this function is to allocate the points, so that if more time spent on it, the fail rate decrease
-   def allocate_points(self, feature_selected, point_list):
+   def allocate_points(self, feature_selected, pointList):
       for i in range(0,3):
-         feature_selected[i].fail_rate = feature_selected[i].fail_rate * (10 - self.point_list[i])*0.1
+         feature_selected[i].fail_rate = feature_selected[i].fail_rate * (10 - self.pointList[i])*0.1
             
 
    # Deployment #
