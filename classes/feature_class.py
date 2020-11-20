@@ -6,6 +6,7 @@ class feature:
       self.lead_time = feature_detail["time"]
       self.fail_rate = feature_detail["fail_rate"]
       self.error_messages = feature_detail["error_messages"]
+      self.points = 0 
       
    def modify_failrate(self, point):
       self.fail_rate = self.fail_rate + point
