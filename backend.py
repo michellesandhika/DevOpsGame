@@ -128,7 +128,7 @@ class Backend:
    # Production #
    ################################################################################################
    # bugs found 
-   def deployment_failure(feature):
+   def deployment_failure(self, feature):
       # the random is float for 1%-9% 
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
@@ -143,8 +143,8 @@ class Backend:
    # After every production, there is going to be the customer feedback, this section is basically for this.
    # using the devOp metrics to decide.
 
-   def customer_feedback():
-      
+   def customer_feedback(self):
+      pass
 
    # Also, there will be an overview of the devop metrics, and a graph if possible? of the progress of the changing devOps
    # dont forget to reset point list
