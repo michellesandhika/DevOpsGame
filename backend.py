@@ -8,8 +8,14 @@ import random
 class Backend:
    def __init__(self):
       self.feature_array = []
+      # this one store the index of the selected feature 
       self.featureSelected = []
-
+      # to store the selected feature, for removing just remove the instance here
+      self.selected = []
+      self.featureDeployed = []
+      # to store point
+      self.pointList = []
+ 
       #read from json and turn to feature class. taken idea from ideas.py
       f = open("json/feature_list.json")
       data = json.load(f)
@@ -33,6 +39,9 @@ class Backend:
 
    # also kinda need a function to map the integer with the actual feature
    # need a function that changes the fail_rate to be higher or lower depending on the time it is chose to be developed.
+   # this function maps the integer to the actual feature 
+   def mapper(self, idx):
+      return self.feature_array[idx]
    
    # Develop # 
    ###############################################################################################
@@ -68,11 +77,11 @@ class Backend:
    # failing rate is not always the same, sometimes its by chance
    
    def calculate_failrate (self):
-      for feature in featureSelected:
+      for feature in self.featureSelected:
          feature.fail_rate = ((random.randint(0,10) + feature.time)/2 * feature.fail_rate)/10
 
    def populate_points(self):
-      for i in range(0, len(featureSelected)):
+      for i in range(0, len(self.featureSelected)):
          self.pointList.append(0)
          
    def point_increase(self,point_index):
@@ -85,12 +94,13 @@ class Backend:
       if self.pointList[point_index] < 0:
          print("point too little")
       else:
-         pointList[point_index] = self.pointList[point_index] - 1
+         self.pointList[point_index] = self.pointList[point_index] - 1
          
    def point_check(self):
       if sum(self.pointList) > 10:
          print("total should only be 10")
-      allocate_points()
+      else: 
+         return sum(self.pointList)
             
       # this function is to allocate the points, so that if more time spent on it, the fail rate decrease
    def allocate_points(self, feature_selected, pointList):
@@ -104,9 +114,9 @@ class Backend:
 
    def feature_deployed(self, selected_interger):
       if selected_interger in self.featureDeployed:
-         featureSelected.remove(selected_interger)
+         self.featureSelected.remove(selected_interger)
       else:
-         featureSelected.append(selected_interger)
+         self.featureSelected.append(selected_interger)
          
    # if they decide to deploy, then remove the feature from the feature_list
    def remove_feature(self):
