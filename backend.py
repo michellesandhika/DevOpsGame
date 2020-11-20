@@ -1,5 +1,5 @@
 import json
-import feature_class as fclass
+import classes.feature_class as fclass
 
 import random
 
@@ -11,7 +11,7 @@ class Backend:
       self.featureSelected = []
 
       #read from json and turn to feature class. taken idea from ideas.py
-      f = open("../feature_list.json")
+      f = open("json/feature_list.json")
       data = json.load(f)
       for i in data["features"]:
          a = fclass.feature(i)

@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 from tkinter.ttk import *
 from tkinter.messagebox import showinfo
 
+from backend import Backend
 
 from UI.Idea_UI import Idea
 from UI.Development_UI import Development
@@ -22,6 +23,8 @@ class MainWindow(Frame):
         self.master.geometry("1300x720+0+0")
         self.master.configure(bg='bisque')
 
+        self.backend = Backend()
+
         self.navi = NavigateFrame(self.master)
         self.navi.pack()
         self.nextButton = Next(self.master, self.nextPage)
@@ -31,12 +34,13 @@ class MainWindow(Frame):
         self.window.pack_propagate(False)
 
         self.numPage = 5
-        self.page = Idea(self.window)
+        self.page = Idea(self.window, self.backend)
         self.pageIndex = 0
         self.page.pack(side='left', padx=10, pady=10)
 
         ## displays popup message about airbnb scenario
-        self.popup_showinfo()
+        
+        #####self.popup_showinfo()
 
     def nextPage(self):
         self.navi.switch()
