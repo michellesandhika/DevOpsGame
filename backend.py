@@ -12,8 +12,8 @@ class Backend:
       # to store the selected feature, for removing just remove the instance here
       self.selected = []
       self.featureDeployed = []
-      # to store point
-      self.pointList = []
+      # initial point 
+      self.point = 10 
  
       #read from json and turn to feature class. taken idea from ideas.py
       f = open("json/feature_list.json")
@@ -89,40 +89,38 @@ class Backend:
    
    def calculate_failrate (self):
       for feature in self.featureSelected:
-         feature.fail_rate = ((random.randint(0,10) + feature.time)/2 * feature.fail_rate)/10
+         # modified it so that time affects harder on fail rate - nic
+         feature.fail_rate = ((random.randint(0,10) * feature.time)/2 * feature.fail_rate)/10
 
-   def populate_points(self):
-      for i in range(0, len(self.featureSelected)):
-         self.pointList.append(0)
+   
+   # dont need populate points, added points in the class - nic
+   
+   # increase the point on feature -nic
+   def point_increase(self,feature):
+      if self.point > 0:
+         self.point -= 1 
+         feature.points += 1
+      
+   # decrease the point on feature -nic
+   def point_decrease(self,feature):
+      if self.point < 10: 
+         self.point += 1
+         feature.points -= 1
          
-   def point_increase(self,point_index):
-      if self.pointList[point_index] > 10:
-         print("point too much")
-      else:
-         self.pointList[point_index] = self.pointList[point_index] + 1
-
-   def point_decrease(self,point_index):
-      if self.pointList[point_index] < 0:
-         print("point too little")
-      else:
-         self.pointList[point_index] = self.pointList[point_index] - 1
-         
+   # return the point (budget) that we have left         
    def point_check(self):
-      if sum(self.pointList) > 10:
-         print("total should only be 10")
-      else: 
-         return sum(self.pointList)
+      return self.point
             
-      # this function is to allocate the points, so that if more time spent on it, the fail rate decrease
-   def allocate_points(self, feature_selected, pointList):
-      for i in range(0,3):
-         feature_selected[i].fail_rate = feature_selected[i].fail_rate * (10 - self.pointList[i])*0.1
+    
             
 
    # Deployment #
    ################################################################################################
    # the purpose of this stage is to select which feature to actually deploy or not
-
+   def new_failrate(self, feature): 
+      # each point worth 5% flat reduction 
+      feature.fail_rate = feature.fail_rate - feature.points * 0.05 
+      
    def feature_deployed(self, selected_interger):
       if selected_interger in self.featureDeployed:
          self.featureSelected.remove(selected_interger)
