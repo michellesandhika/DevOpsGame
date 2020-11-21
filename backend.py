@@ -1,5 +1,6 @@
 import json
 import classes.feature_class as fclass
+import classes.devOps_class as dclass
 
 import random
 
@@ -14,6 +15,8 @@ class Backend:
       self.featureDeployed = []
       # initial point 
       self.point = 10 
+      
+      self.devopMetrics = dclass()
  
       #read from json and turn to feature class. taken idea from ideas.py
       f = open("json/feature_list.json")
@@ -36,8 +39,6 @@ class Backend:
       else:
          self.featureSelected.append(selected_interger)
 
-   # also kinda need a function to map the integer with the actual feature
-   # need a function that changes the fail_rate to be higher or lower depending on the time it is chose to be developed.
    # this function maps the integer to the actual feature 
    def mapper(self, idx):
       return self.featureArray[idx]
@@ -50,8 +51,11 @@ class Backend:
    ###############################################################################################
    # the purpose of this stage is to show random errors and how to handle it in the middle of production
 
-   
+   def adjust_errors(self):
+      self.featureDeployed
+
    def pick_errors(self):
+      
       errorList = []
       for feature in self.featureSelected:
          for error in feature.error_messages:
@@ -59,10 +63,14 @@ class Backend:
                errorList.append([feature, error])
                feature.fail_rate += error["fail_weight"] / 10
       return errorList
-
+   
+   def add_leadtime(self):
+      for feature in self.featureSelected:
+         devopMetrics.leadTime = devopMetrics.leadTime + feature.time
    
    def show_error(self):
       self.process_mapping()
+      self.add_leadtime()
       self.errorList = self.pick_errors()
             
    
@@ -111,8 +119,6 @@ class Backend:
    def point_check(self):
       return self.point
             
-    
-            
 
    # Deployment #
    ################################################################################################
@@ -130,8 +136,6 @@ class Backend:
    # if they decide to deploy, then remove the feature from the feature_list
    def remove_feature(self):
       self.featureArray = self.featureArray - self.featureDeployed
-
-   # if they decided not to deploy, but then still want to keep the fail rate, so...
 
 
    # Production #
