@@ -106,6 +106,9 @@ class Backend:
       if self.point < 10: 
          self.point += 1
          feature.points -= 1
+
+   def point_set(self, feature, point):
+      self.point
          
    # return the point (budget) that we have left         
    def point_check(self):

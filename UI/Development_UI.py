@@ -13,15 +13,12 @@ class Development(tk.Label):
         self.nextButton["state"] = tk.DISABLED
 
         self.backend.show_error()
-        print( len(self.backend.errorList))
-
 
         self.isFinish = True if len(self.backend.errorList) == 0 else False
         if(not(self.isFinish)):
             self.setBug()
         else:
             #show finish page
-            print("done")
             self.nextButton["state"] = tk.NORMAL
         
 
@@ -54,7 +51,6 @@ class Development(tk.Label):
 
         if self.isFinish:
             #show finish page
-            print("done")
             self.nextButton["state"] = tk.NORMAL
         else:
             self.setBug()
