@@ -6,7 +6,10 @@ if __name__ == "__main__":
     backend.process_selected(2)
     backend.process_selected(3)
 
-    e = backend.show_error()
-    print(e)
-    if(e != None):
-        print(backend.solution_picked(0))
+    backend.show_error()
+    print([i.fail_rate for i in backend.featureSelected])
+    stat = backend.solution_picked(0)
+    while stat == False:
+        stat = backend.solution_picked(0)
+    print([i.fail_rate for i in backend.featureSelected])
+

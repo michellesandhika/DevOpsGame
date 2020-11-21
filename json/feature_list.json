@@ -10,6 +10,7 @@
             {
                "message": "2-step verification error",
                "fail_weight": 5,
+               "possibility": 0.6,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -26,6 +27,7 @@
             {
                "message": "encryption method failed to port",
                "fail_weight": 8,
+               "possibility": 0.5,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -50,6 +52,7 @@
             {
                "message": "security breach while porting",
                "fail_weight": 4,
+               "possibility": 0.4,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -66,6 +69,7 @@
             {
                "message": "forgot to port possibility of paying with paypal",
                "fail_weight": 8,
+               "possibility": 0.6,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -90,6 +94,7 @@
             {
                "message": "database broken",
                "fail_weight": 5,
+               "possibility": 0.4,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -106,6 +111,7 @@
             {
                "message": "reading the wrong data",
                "fail_weight": 8,
+               "possibility": 0.8,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -130,6 +136,7 @@
             {
                "message": "dashboard uses the wrong UI",
                "fail_weight": 5,
+               "possibility": 0.2,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -146,6 +153,7 @@
             {
                "message": "miscommunication with users on what to put in the dashboard",
                "fail_weight": 8,
+               "possibility": 0.9,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -170,6 +178,7 @@
             {
                "message": "history was not stored in the database properly",
                "fail_weight": 5,
+               "possibility": 0.5,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
@@ -186,6 +195,7 @@
             {
                "message": "bug crash",
                "fail_weight": 8,
+               "possibility": 0.9,
                "solution":[
                   {
                      "method":" remove the 2-step verification",

@@ -50,40 +50,34 @@ class Backend:
    ###############################################################################################
    # the purpose of this stage is to show random errors and how to handle it in the middle of production
 
-   # pick which error to show
-   # loop through the different features and see which one has the highest fail rate
-   # returns the index of the failMax in featureSelected
-   def pick_error(self):
-      failMax_idx = 0
-      for i in range (1, len(self.featureSelected)):
-        
-         if self.featureSelected[i].error_messages["fail_weight"] > self.featureSelected[failMax_idx].error_messages["fail_weight"]:
-            failMax_idx = i
-      return failMax_idx
-          
-   # with the error picked, find out whether there is the possibility of it coming through
-   # if it comes through then +point on the fail rate of that feature
-   # returns none if there is no bug
+   
+   def pick_errors(self):
+      errorList = []
+      for feature in self.featureSelected:
+         for error in feature.error_messages:
+            if random.uniform(0, 1) < error["possibility"]:
+               errorList.append([feature, error])
+               feature.fail_rate += error["fail_weight"] / 10
+      return errorList
+         
+   
    def show_error(self):
       self.process_mapping()
-      feature_forError = self.featureSelected[self.pick_error()]
-      error_selected = feature_forError.error_messages
+      self.errorList = self.pick_errors()
       
-      error_chance = (error_selected["fail_weight"] + random.randint(2, 10))/2
-      if error_chance > 5:
-         feature_forError.fail_rate = feature_forError.fail_rate + (error_chance/10)
-         
-         return error_selected
-      else:
-         return None
-   
+
+
    # to get the message error use show_error().messgage, and the solution with show_error().solution
       
-   # from the error, which solution can decrease the fail rate?
-   # selected_solution is the input from the option
+   
+   # apply the weights by the solution picked, return true if no more error need to select, false vice versa
    def solution_picked(self, selected_solution):
-      #featureSelected[pick_error()].fail_rate = featureSelected[pick_error()].fail_rate - (featureSelected[pick_error()].fail_weight/10)
-      self.featureSelected[self.pick_error()].fail_rate = self.featureSelected[self.pick_error()].error_messages["solution"][selected_solution]["weight"]
+      if len(self.errorList) == 0:
+         return True
+      current = self.errorList.pop(0)
+      current[0].fail_rate = current[0].fail_rate - (current[1]["solution"][selected_solution]['weight']/10)
+      return False
+      #self.featureSelected[self.pick_error()].fail_rate = self.featureSelected[self.pick_error()].error_messages["solution"][selected_solution]["weight"]
 
 
    # Testing #
