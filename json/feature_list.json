@@ -30,12 +30,12 @@
                "possibility": 0.5,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"research on new encryption method",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "retry porting",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -55,12 +55,12 @@
                "possibility": 0.4,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method": "use a third party payment method",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "fix",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -72,12 +72,12 @@
                "possibility": 0.6,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method": "remove using paypal",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "implement paypal but with more time",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -97,12 +97,12 @@
                "possibility": 0.4,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"switch to dynamodb",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "recreate database",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -114,12 +114,12 @@
                "possibility": 0.8,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"fix the wrong data",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "fix the wrong data while changing the entire code structure again",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -134,17 +134,17 @@
          "fail_rate": 0.1,
          "error_messages":[
             {
-               "message": "dashboard uses the wrong UI",
+               "message": "dashboard has a bad UI",
                "fail_weight": 5,
                "possibility": 0.2,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method": "hire a designer",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "use a template",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -156,12 +156,12 @@
                "possibility": 0.9,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"make another focus group for better understanding of user requirement",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "hire a business analyst to have a more accurate feel of user requirement",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -181,29 +181,29 @@
                "possibility": 0.5,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"check the database",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "check the code",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             },
             {
-               "message": "bug crash",
+               "message": "slow read in the history",
                "fail_weight": 8,
                "possibility": 0.9,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"add foreign keys to the database to make it faster",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "change the database to noSQL",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
