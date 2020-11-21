@@ -215,3 +215,10 @@ class Backend:
 
    # After the game ends #
    #################################################################################################
+   def calculate_score(self):
+      score = 0
+      #30% for lead time
+      score = self.devopMetrics.leadTime
+      #50% for deployment failure
+      score = self.devopMetrics.failedDeployment
+      #20% for average failed per deploy?
