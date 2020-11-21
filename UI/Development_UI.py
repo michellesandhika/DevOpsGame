@@ -13,15 +13,12 @@ class Development(tk.Label):
         self.nextButton["state"] = tk.DISABLED
 
         self.backend.show_error()
-        print( len(self.backend.errorList))
-
 
         self.isFinish = True if len(self.backend.errorList) == 0 else False
         if(not(self.isFinish)):
             self.setBug()
         else:
             #show finish page
-            print("done")
             self.nextButton["state"] = tk.NORMAL
         
 
@@ -40,7 +37,7 @@ class Development(tk.Label):
         self.button = []
         for i in range(len(current[1]["solution"])):
             self.button.append(tk.Button(self, text=current[1]["solution"][i]["method"],
-                        width=30, height=2, font=self.myFont, bg="white",
+                        width=80, height=2, font=self.myFont, bg="white",
                         command=lambda i=i:self.selectButton(i)))
             self.button[i].pack(anchor="e", padx=20, pady=5)
 
@@ -54,7 +51,6 @@ class Development(tk.Label):
 
         if self.isFinish:
             #show finish page
-            print("done")
             self.nextButton["state"] = tk.NORMAL
         else:
             self.setBug()

@@ -19,8 +19,7 @@ class Backend:
       # initial point 
       self.point = 10 
       
-      self.devopMetrics = dclass()
-
+      self.devopMetrics = dclass.devOps()
  
       #read from json and turn to feature class. taken idea from ideas.py
       f = open("json/feature_list.json")
@@ -90,7 +89,7 @@ class Backend:
    
    def show_error(self):
       self.process_mapping()
-      self.add_leadtime()
+      #self.add_leadtime()
       self.errorList = self.pick_errors()
             
    
@@ -115,10 +114,10 @@ class Backend:
    # both random int and time is 10 max, so the maximum is 10
    # failing rate is not always the same, sometimes its by chance
    
-   def calculate_failrate (self):
+   def calculate_failrate(self):
       for feature in self.featureSelected:
          # modified it so that time affects harder on fail rate - nic
-         feature.fail_rate = ((random.randint(0,10) * feature.time)/2 * feature.fail_rate)/10
+         feature.fail_rate = ((random.randint(0,10) * feature.lead_time)/2 * feature.fail_rate)/10
 
    
    # dont need populate points, added points in the class - nic
@@ -134,6 +133,9 @@ class Backend:
       if self.point < 10: 
          self.point += 1
          feature.points -= 1
+
+   def point_set(self, index, point):
+      self.featureSelected[index].points = point
          
    # return the point (budget) that we have left         
    def point_check(self):

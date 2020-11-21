@@ -52,7 +52,7 @@ class MainWindow(Frame):
         elif self.pageIndex == 1:
             self.page = Development(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 2:
-            self.page = Testing(self.window, self.backend) 
+            self.page = Testing(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 3:
             self.page = Deployment(self.window, self.backend) 
         elif self.pageIndex == 4:
