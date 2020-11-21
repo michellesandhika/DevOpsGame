@@ -82,8 +82,10 @@ class Backend:
    # from the error, which solution can decrease the fail rate?
    # selected_solution is the input from the option
    def solution_picked(self, selected_solution):
-      featureSelected[pick_error()].fail_rate = featureSelected[pick_error()].fail_rate - (featureSelected[pick_error()].fail_weight/10)
-      
+      #featureSelected[pick_error()].fail_rate = featureSelected[pick_error()].fail_rate - (featureSelected[pick_error()].fail_weight/10)
+      self.featureSelected[self.pick_error()].fail_rate = self.featureSelected[self.pick_error()].error_messages["solution"][selected_solution]["weight"]
+
+
    # Testing #
    ###############################################################################################
    # the purpose of this stage is to give the players freedom to spend more time on specific features
