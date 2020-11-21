@@ -37,7 +37,7 @@ class Development(tk.Label):
         self.button = []
         for i in range(len(current[1]["solution"])):
             self.button.append(tk.Button(self, text=current[1]["solution"][i]["method"],
-                        width=30, height=2, font=self.myFont, bg="white",
+                        width=80, height=2, font=self.myFont, bg="white",
                         command=lambda i=i:self.selectButton(i)))
             self.button[i].pack(anchor="e", padx=20, pady=5)
 

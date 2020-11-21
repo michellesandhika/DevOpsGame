@@ -9,7 +9,7 @@ class Idea(tk.Label):
         self.backend = backend
         self.myFont = font.Font(size=15)
 
-        self.label = tk.Label(self, text="Which features do you wish to deploy?\n (Please select at most 3)",
+        self.label = tk.Label(self, text="Which features do you wish to deploy?\n (Please select at most 3)\n (the top is the biggest feature and the bottom is the smallest)",
         width=100, height=3, font=self.myFont,
          background="white")
         self.label.pack(anchor="nw", padx=20, pady=5)
