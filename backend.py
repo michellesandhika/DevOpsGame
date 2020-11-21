@@ -121,27 +121,33 @@ class Backend:
       return self.point
             
     
-            
+   def new_failrate(self, feature): 
+      # each point worth 5% flat reduction 
+      feature.fail_rate = feature.fail_rate - feature.points * 0.05      
 
    # Deployment #
    ################################################################################################
    # the purpose of this stage is to select which feature to actually deploy or not
-   def new_failrate(self, feature): 
-      # each point worth 5% flat reduction 
-      feature.fail_rate = feature.fail_rate - feature.points * 0.05 
-      
-   def feature_deployed(self, selected_interger):
-      if selected_interger in self.featureDeployed:
-         self.featureSelected.remove(selected_interger)
+   def feature_deployed(self, feature):
+      if feature in self.featureDeployed:
+         self.featureDeployed.remove(feature)
       else:
-         self.featureSelected.append(selected_interger)
-         
+         self.featureDeployed.append(feature)
+               
    # if they decide to deploy, then remove the feature from the feature_list
    def remove_feature(self):
-      self.featureArray = self.featureArray - self.featureDeployed
-
-   # if they decided not to deploy, but then still want to keep the fail rate, so...
-
+      # a list of index of what to remove 
+      idx = []
+      for i in self.featureDeployed:
+         for j in range (0, len(self.featureSelected)):
+            if i.feature_name == self.featureSelected[j].feature_name:
+               idx.append(j)
+               
+      # Sort the collection of index so they dont collapse on each other 
+      idx = sorted(idx, reverse = True)
+      for i in idx: 
+         self.featureSelected.pop(i)
+      # self.featureArray = self.featureArray - self.featureDeployed
 
    # Production #
    ################################################################################################
