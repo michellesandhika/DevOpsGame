@@ -142,13 +142,21 @@ class Backend:
          for j in range (0, len(self.featureSelected)):
             if i.feature_name == self.featureSelected[j].feature_name:
                idx.append(j)
-               
+
       # Sort the collection of index so they dont collapse on each other 
       idx = sorted(idx, reverse = True)
       for i in idx: 
          self.featureSelected.pop(i)
       # self.featureArray = self.featureArray - self.featureDeployed
 
+   def reset_points(self, feature):
+      feature.points = 0
+   
+   def reset_all_points(self):
+      self.point = 0
+      for feature in featureSelected: 
+         self.reset_points(feature)
+   
    # Production #
    ################################################################################################
    # bugs found 
