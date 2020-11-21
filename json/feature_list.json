@@ -2,93 +2,9 @@
    "scenario":"Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!",
    "features": [
       {
-         "id": 0,
-         "feature_name":"Overhaul Profile Creation",
-         "time": 3,
-         "fail_rate": 0.1,
-         "error_messages":[
-            {
-               "message": "2-step verification doesn't work with several methods",
-               "fail_weight": 5,
-               "possibility": 0.6,
-               "solution":[
-                  {
-                     "method":" remove the 2-step verification",
-                     "affected_devOps": "review",
-                     "weight":1
-                  },
-                  {
-                     "method": "Debug third party API usage",
-                     "affected_devOps": "lead_time",
-                     "weight": 2
-                  }
-               ]
-            },
-            {
-               "message": "encryption method failed to port due to poor data design",
-               "fail_weight": 8,
-               "possibility": 0.5,
-               "solution":[
-                  {
-                     "method":"research on new encryption method",
-                     "affected_devOps": "review",
-                     "weight":5
-                  },
-                  {
-                     "method": "use older encryption system",
-                     "affected_devOps": "lead_time",
-                     "weight": 2
-                  }
-               ]
-            }
-         ]
-      },
-      {
-         "id": 1,
-         "feature_name":"Add more Payment Methods",
-         "time": 3,
-         "fail_rate": 0.1,
-         "error_messages":[
-            {
-               "message": "this addition proves to be insecure and is exposed by tech reviewers",
-               "fail_weight": 4,
-               "possibility": 0.4,
-               "solution":[
-                  {
-                     "method": "Implement third party payment methods",
-                     "affected_devOps": "review",
-                     "weight":2
-                  },
-                  {
-                     "method": "Find source of vulnerability and patch it up",
-                     "affected_devOps": "lead_time",
-                     "weight": 2
-                  }
-               ]
-            },
-            {
-               "message": "Paypal upgrades their payment policy and API",
-               "fail_weight": 8,
-               "possibility": 0.6,
-               "solution":[
-                  {
-                     "method": "Abort the use of paypal",
-                     "affected_devOps": "review",
-                     "weight":1
-                  },
-                  {
-                     "method": "redo the whole Paypal payment method",
-                     "affected_devOps": "lead_time",
-                     "weight": 2
-                  }
-               ]
-            }
-         ]
-      },
-      {
          "id": 2,
          "feature_name":"Give more options to hosts",
-         "time": 3,
+         "time": 5,
          "fail_rate": 0.1,
          "error_messages":[
             {
@@ -128,9 +44,51 @@
          ]
       },
       {
+         "id": 1,
+         "feature_name":"Add more Payment Methods",
+         "time": 4,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "this addition proves to be insecure and is exposed by tech reviewers",
+               "fail_weight": 4,
+               "possibility": 0.4,
+               "solution":[
+                  {
+                     "method": "Implement third party payment methods",
+                     "affected_devOps": "review",
+                     "weight":2
+                  },
+                  {
+                     "method": "Find source of vulnerability and patch it up",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "Paypal upgrades their payment policy and API",
+               "fail_weight": 8,
+               "possibility": 0.6,
+               "solution":[
+                  {
+                     "method": "Abort the use of paypal",
+                     "affected_devOps": "review",
+                     "weight":1
+                  },
+                  {
+                     "method": "redo the whole Paypal payment method",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            }
+         ]
+      },
+      {
          "id": 3,
          "feature_name":"improve data dashboard for hosts",
-         "time": 3,
+         "time": 4,
          "fail_rate": 0.1,
          "error_messages":[
             {
@@ -172,7 +130,7 @@
       {
          "id": 4,
          "feature_name":" more detail for booking history for users",
-         "time": 3,
+         "time": 4,
          "fail_rate": 0.1,
          "error_messages":[
             {
@@ -206,6 +164,48 @@
                      "method": "change the database to noSQL",
                      "affected_devOps": "lead_time",
                      "weight": 3
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "id": 0,
+         "feature_name":"Overhaul Profile Creation",
+         "time": 3,
+         "fail_rate": 0.1,
+         "error_messages":[
+            {
+               "message": "2-step verification doesn't work with several methods",
+               "fail_weight": 5,
+               "possibility": 0.6,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
+                     "weight":1
+                  },
+                  {
+                     "method": "Debug third party API usage",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "encryption method failed to port due to poor data design",
+               "fail_weight": 8,
+               "possibility": 0.5,
+               "solution":[
+                  {
+                     "method":"research on new encryption method",
+                     "affected_devOps": "review",
+                     "weight":5
+                  },
+                  {
+                     "method": "use older encryption system",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
                   }
                ]
             }
