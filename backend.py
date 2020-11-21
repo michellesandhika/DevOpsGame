@@ -2,6 +2,7 @@ import json
 import classes.feature_class as fclass
 import classes.devOps_class as dclass
 
+
 import random
 
 
@@ -13,10 +14,13 @@ class Backend:
       # to store the selected feature, for removing just remove the instance here
       self.selected = []
       self.featureDeployed = []
+      # to store successfully deployed feature 
+      self.deployed = []
       # initial point 
       self.point = 10 
       
       self.devopMetrics = dclass()
+
  
       #read from json and turn to feature class. taken idea from ideas.py
       f = open("json/feature_list.json")
@@ -27,7 +31,23 @@ class Backend:
          
    def returnFeatureClasses(self):
       return self.featureArray
-
+   
+   # Utility 
+   # To remove multiple feature from list. remove is which array you want to remove
+   def remove_multiple_features(self, key, remove): 
+      idx = []
+      print(key)
+      for i in key: 
+         for j in range (0, len(remove)): 
+            if i.feature_name == remove[j].feature_name:
+               idx.append(j)
+      
+      # Sort the collection of index so they dont collapse on each other 
+      idx = sorted(idx, reverse = True)
+      for i in idx: 
+         remove.pop(i)
+      
+      
    # Idea page #
    #############################################################################################
    # the purpose of this stage is to select features to work on
@@ -119,25 +139,36 @@ class Backend:
    def point_check(self):
       return self.point
             
+    
+   def new_failrate(self, feature): 
+      # each point worth 5% flat reduction 
+      feature.fail_rate = feature.fail_rate - feature.points * 0.05      
 
    # Deployment #
    ################################################################################################
    # the purpose of this stage is to select which feature to actually deploy or not
-   def new_failrate(self, feature): 
-      # each point worth 5% flat reduction 
-      feature.fail_rate = feature.fail_rate - feature.points * 0.05 
-      
-   def feature_deployed(self, selected_interger):
-      if selected_interger in self.featureDeployed:
-         self.featureSelected.remove(selected_interger)
+   def feature_deployed(self, feature):
+      if feature in self.featureDeployed:
+         self.featureDeployed.remove(feature)
       else:
-         self.featureSelected.append(selected_interger)
-         
+         self.featureDeployed.append(feature)
+               
    # if they decide to deploy, then remove the feature from the feature_list
+   
    def remove_feature(self):
-      self.featureArray = self.featureArray - self.featureDeployed
+      # a list of index of what to remove 
+      idx = []
+      self.remove_multiple_features(self.featureDeployed, self.featureSelected)
+     
 
-
+   def reset_points(self, feature):
+      feature.points = 0
+   
+   def reset_all_points(self):
+      self.point = 0
+      for feature in featureSelected: 
+         self.reset_points(feature)
+   
    # Production #
    ################################################################################################
    # bugs found 
@@ -149,7 +180,7 @@ class Backend:
          return True
       else: 
          return False 
-
+   
 
    # After Everything else #
    ################################################################################################
