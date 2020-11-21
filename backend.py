@@ -2,7 +2,6 @@ import json
 import classes.feature_class as fclass
 import classes.devOps_class as dclass
 
-
 import random
 
 
@@ -19,6 +18,7 @@ class Backend:
       # initial point 
       self.point = 10 
       
+      self.noFeatureDeployed = 0
       self.devopMetrics = dclass()
 
  
@@ -71,11 +71,7 @@ class Backend:
    ###############################################################################################
    # the purpose of this stage is to show random errors and how to handle it in the middle of production
 
-   def adjust_errors(self):
-      self.featureDeployed
-
    def pick_errors(self):
-      
       errorList = []
       for feature in self.featureSelected:
          for error in feature.error_messages:
@@ -117,9 +113,11 @@ class Backend:
    
    def calculate_failrate (self):
       for feature in self.featureSelected:
-         # modified it so that time affects harder on fail rate - nic
-         feature.fail_rate = ((random.randint(0,10) * feature.time)/2 * feature.fail_rate)/10
+         #the more the feature is the more each will be likely to fail
+         feature.fail_rate = feature.fail_rate + 1-(0.9/len(self.featureSelected))
 
+         # if it is not on order, give penalty that it would be harder
+         feature.fail_rate = abs(feature.id - self.round) * feature.fail_rate
    
    # dont need populate points, added points in the class - nic
    
@@ -139,7 +137,6 @@ class Backend:
    def point_check(self):
       return self.point
             
-    
    def new_failrate(self, feature): 
       # each point worth 5% flat reduction 
       feature.fail_rate = feature.fail_rate - feature.points * 0.05      
@@ -160,7 +157,6 @@ class Backend:
       idx = []
       self.remove_multiple_features(self.featureDeployed, self.featureSelected)
      
-
    def reset_points(self, feature):
       feature.points = 0
    
@@ -177,6 +173,7 @@ class Backend:
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
       if fail < feature.fail_rate * 100: 
+         self.devopsMetrics.failedDeployment = self.devopsMetrics.failedDeployment + 1
          return True
       else: 
          return False 
@@ -189,7 +186,9 @@ class Backend:
 
    def customer_feedback(self):
       pass
-      
+
+   def ending(self):
+      self.round = self.round + 1
 
    # Also, there will be an overview of the devop metrics, and a graph if possible? of the progress of the changing devOps
    # dont forget to reset point list
