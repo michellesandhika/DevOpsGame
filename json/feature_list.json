@@ -3,37 +3,39 @@
    "features": [
       {
          "id": 0,
-         "feature_name":"profile creation",
+         "feature_name":"Overhaul Profile Creation",
          "time": 3,
          "fail_rate": 0.1,
          "error_messages":[
             {
-               "message": "2-step verification error",
+               "message": "2-step verification doesn't work with several methods",
                "fail_weight": 5,
+               "possibility": 0.6,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":1
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "Debug third party API usage",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             },
             {
-               "message": "encryption method failed to port",
+               "message": "encryption method failed to port due to poor data design",
                "fail_weight": 8,
+               "possibility": 0.5,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"research on new encryption method",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "use older encryption system",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -43,37 +45,39 @@
       },
       {
          "id": 1,
-         "feature_name":"payment methods",
+         "feature_name":"Add more Payment Methods",
          "time": 3,
          "fail_rate": 0.1,
          "error_messages":[
             {
-               "message": "security breach while porting",
+               "message": "this addition proves to be insecure and is exposed by tech reviewers",
                "fail_weight": 4,
+               "possibility": 0.4,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method": "Implement third party payment methods",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":2
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "Find source of vulnerability and patch it up",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             },
             {
-               "message": "forgot to port possibility of paying with paypal",
+               "message": "Paypal upgrades their payment policy and API",
                "fail_weight": 8,
+               "possibility": 0.6,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method": "Abort the use of paypal",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":1
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "redo the whole Paypal payment method",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -83,37 +87,39 @@
       },
       {
          "id": 2,
-         "feature_name":"review host feature",
+         "feature_name":"Give more options to hosts",
          "time": 3,
          "fail_rate": 0.1,
          "error_messages":[
             {
-               "message": "database broken",
+               "message": "Current server architecture is not suited for this",
                "fail_weight": 5,
+               "possibility": 0.4,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"switch to dynamodb",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "overhaul database structure",
                      "affected_devOps": "lead_time",
-                     "weight": 2
+                     "weight": 5
                   }
                ]
             },
             {
-               "message": "reading the wrong data",
+               "message": "Odd Data pops up on the database",
                "fail_weight": 8,
+               "possibility": 0.4,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"remove odd data and proceed with development",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":-3
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "purge incorrect data while changing the entire code structure again",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -123,37 +129,39 @@
       },
       {
          "id": 3,
-         "feature_name":"data dashboard for hosts",
+         "feature_name":"improve data dashboard for hosts",
          "time": 3,
          "fail_rate": 0.1,
          "error_messages":[
             {
-               "message": "dashboard uses the wrong UI",
+               "message": "dashboard UI is poorly received by some",
                "fail_weight": 5,
+               "possibility": 0.2,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method": "comision additional designers",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "work with third party UI companies to help improve it",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             },
             {
-               "message": "miscommunication with users on what to put in the dashboard",
+               "message": "Focus group often misinterpret the data or deem it not necessary",
                "fail_weight": 8,
+               "possibility": 0.9,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"implement feedback from user group",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":4
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "hire a business analyst to have a more accurate feel of user requirement",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
@@ -163,39 +171,41 @@
       },
       {
          "id": 4,
-         "feature_name":"booking history for users",
+         "feature_name":" more detail for booking history for users",
          "time": 3,
          "fail_rate": 0.1,
          "error_messages":[
             {
                "message": "history was not stored in the database properly",
                "fail_weight": 5,
+               "possibility": 0.5,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"put more effort into checking the database",
                      "affected_devOps": "review",
                      "weight":5
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "put more effort in checking the application code",
                      "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             },
             {
-               "message": "bug crash",
+               "message": "checking user history takes plenty of server time and energy",
                "fail_weight": 8,
+               "possibility": 0.9,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"change the database schema",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":2
                   },
                   {
-                     "method": "check the backend error",
+                     "method": "change the database to noSQL",
                      "affected_devOps": "lead_time",
-                     "weight": 2
+                     "weight": 3
                   }
                ]
             }
