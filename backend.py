@@ -72,7 +72,6 @@ class Backend:
       error_chance = (error_selected["fail_weight"] + random.randint(2, 10))/2
       if error_chance > 5:
          feature_forError.fail_rate = feature_forError.fail_rate + (error_chance/10)
-         
          return error_selected
       else:
          return None
