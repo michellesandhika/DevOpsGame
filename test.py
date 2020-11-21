@@ -6,19 +6,10 @@ if __name__ == "__main__":
     backend.process_selected(2)
     backend.process_selected(3)
 
-   
-    backend.process_mapping()
-    # print(backend.featureSelected)
-    for i in backend.featureSelected:
-        print(i.feature_name)
-    print()
-    feature1 = backend.featureSelected[0]
-    feature2 = backend.featureSelected[1]
-    backend.feature_deployed(feature1)
-    backend.feature_deployed(feature2)
-    for i in backend.featureDeployed:
-        print(i.feature_name)
-    print()
-    backend.remove_feature()
-    for i in backend.featureSelected:
-        print(i.feature_name)
+    backend.show_error()
+    print([i.fail_rate for i in backend.featureSelected])
+    stat = backend.solution_picked(0)
+    while stat == False:
+        stat = backend.solution_picked(0)
+    print([i.fail_rate for i in backend.featureSelected])
+
