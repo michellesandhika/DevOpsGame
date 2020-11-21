@@ -6,106 +6,200 @@
          "feature_name":"profile creation",
          "time": 3,
          "fail_rate": 0.1,
-         "error_messages":
+         "error_messages":[
             {
                "message": "2-step verification error",
                "fail_weight": 5,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
                      "weight":5
                   },
                   {
                      "method": "check the backend error",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "encryption method failed to port",
+               "fail_weight": 8,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             }
+         ]
       },
       {
          "id": 1,
          "feature_name":"payment methods",
          "time": 3,
          "fail_rate": 0.1,
-         "error_messages":
+         "error_messages":[
             {
                "message": "security breach while porting",
                "fail_weight": 4,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
                      "weight":5
                   },
                   {
                      "method": "check the backend error",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "forgot to port possibility of paying with paypal",
+               "fail_weight": 8,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             }
+         ]
       },
       {
          "id": 2,
          "feature_name":"review host feature",
          "time": 3,
          "fail_rate": 0.1,
-         "error_messages":
+         "error_messages":[
             {
                "message": "database broken",
                "fail_weight": 5,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
                      "weight":5
                   },
                   {
                      "method": "check the backend error",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "reading the wrong data",
+               "fail_weight": 8,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             }
-            
+         ]
       },
       {
          "id": 3,
          "feature_name":"data dashboard for hosts",
          "time": 3,
          "fail_rate": 0.1,
-         "error_messages":
+         "error_messages":[
             {
                "message": "dashboard uses the wrong UI",
                "fail_weight": 5,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
                      "weight":5
                   },
                   {
                      "method": "check the backend error",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "miscommunication with users on what to put in the dashboard",
+               "fail_weight": 8,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             }
+         ]
       },
       {
          "id": 4,
          "feature_name":"booking history for users",
          "time": 3,
          "fail_rate": 0.1,
-         "error_messages":
+         "error_messages":[
             {
                "message": "history was not stored in the database properly",
-               "fail_weight": 8,
+               "fail_weight": 5,
                "solution":[
                   {
                      "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
                      "weight":5
                   },
                   {
                      "method": "check the backend error",
+                     "affected_devOps": "lead_time",
+                     "weight": 2
+                  }
+               ]
+            },
+            {
+               "message": "bug crash",
+               "fail_weight": 8,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "affected_devOps": "review",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "affected_devOps": "lead_time",
                      "weight": 2
                   }
                ]
             }
+         ]
       }
    ]
 }

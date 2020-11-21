@@ -1,0 +1,111 @@
+{
+   "scenario":"Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!",
+   "features": [
+      {
+         "id": 0,
+         "feature_name":"profile creation",
+         "time": 3,
+         "fail_rate": 0.1,
+         "error_messages":
+            {
+               "message": "2-step verification error",
+               "fail_weight": 5,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "weight": 2
+                  }
+               ]
+            }
+      },
+      {
+         "id": 1,
+         "feature_name":"payment methods",
+         "time": 3,
+         "fail_rate": 0.1,
+         "error_messages":
+            {
+               "message": "security breach while porting",
+               "fail_weight": 4,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "weight": 2
+                  }
+               ]
+            }
+      },
+      {
+         "id": 2,
+         "feature_name":"review host feature",
+         "time": 3,
+         "fail_rate": 0.1,
+         "error_messages":
+            {
+               "message": "database broken",
+               "fail_weight": 5,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "weight": 2
+                  }
+               ]
+            }
+            
+      },
+      {
+         "id": 3,
+         "feature_name":"data dashboard for hosts",
+         "time": 3,
+         "fail_rate": 0.1,
+         "error_messages":
+            {
+               "message": "dashboard uses the wrong UI",
+               "fail_weight": 5,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "weight": 2
+                  }
+               ]
+            }
+      },
+      {
+         "id": 4,
+         "feature_name":"booking history for users",
+         "time": 3,
+         "fail_rate": 0.1,
+         "error_messages":
+            {
+               "message": "history was not stored in the database properly",
+               "fail_weight": 8,
+               "solution":[
+                  {
+                     "method":" remove the 2-step verification",
+                     "weight":5
+                  },
+                  {
+                     "method": "check the backend error",
+                     "weight": 2
+                  }
+               ]
+            }
+      }
+   ]
+}
