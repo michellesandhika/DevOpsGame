@@ -13,8 +13,6 @@ class Backend:
       # to store the selected feature, for removing just remove the instance here
       self.selected = []
       self.featureDeployed = []
-      # to store successfully deployed feature 
-      self.deployed = []
       # initial point 
       self.point = 10 
       
@@ -151,8 +149,8 @@ class Backend:
          self.featureDeployed.append(feature)
                
    # if they decide to deploy, then remove the feature from the feature_list
-   
-   def remove_feature(self):
+   # to remove the deployed feature from the featureSelected
+   def remove_featureSelected(self):
       # a list of index of what to remove 
       idx = []
       self.remove_multiple_features(self.featureDeployed, self.featureSelected)
@@ -174,10 +172,27 @@ class Backend:
       # im assuming failure rate is always < 1
       if fail < feature.fail_rate * 100: 
          self.devopsMetrics.failedDeployment = self.devopsMetrics.failedDeployment + 1
-         return True
+         return True # the feature failed
       else: 
          return False 
    
+   def deploy(self):
+      deployed = []
+      for i in self.featureDeployed:
+         if not self.deployment_failure(i): 
+            deployed.append(i)
+      
+      # remove the feature from the list 
+      self.remove_multiple_features(deployed, self.featureDeployed)
+      # remove it from the featureArray too
+      self.remove_multiple_features(deployed, self.featureArray)
+      # reduce the time for the failed feature in the featureDeployed
+      for feature in self.featureDeployed: 
+         feature.time = feature.time / 2
+      
+      # clear the selected array 
+      self.featureSelected.clear()
+      self.featureDeployed.clear()
 
    # After Everything else #
    ################################################################################################
