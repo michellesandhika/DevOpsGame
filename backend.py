@@ -12,6 +12,8 @@ class Backend:
       # to store the selected feature, for removing just remove the instance here
       self.selected = []
       self.featureDeployed = []
+      # to store successfully deployed feature 
+      self.deployed = []
       # initial point 
       self.point = 10 
  
@@ -24,7 +26,23 @@ class Backend:
          
    def returnFeatureClasses(self):
       return self.featureArray
-
+   
+   # Utility 
+   # To remove multiple feature from list. remove is which array you want to remove
+   def remove_multiple_features(self, key, remove): 
+      idx = []
+      print(key)
+      for i in key: 
+         for j in range (0, len(remove)): 
+            if i.feature_name == remove[j].feature_name:
+               idx.append(j)
+      
+      # Sort the collection of index so they dont collapse on each other 
+      idx = sorted(idx, reverse = True)
+      for i in idx: 
+         remove.pop(i)
+      
+      
    # Idea page #
    #############################################################################################
    # the purpose of this stage is to select features to work on
@@ -135,19 +153,12 @@ class Backend:
          self.featureDeployed.append(feature)
                
    # if they decide to deploy, then remove the feature from the feature_list
+   
    def remove_feature(self):
       # a list of index of what to remove 
       idx = []
-      for i in self.featureDeployed:
-         for j in range (0, len(self.featureSelected)):
-            if i.feature_name == self.featureSelected[j].feature_name:
-               idx.append(j)
-
-      # Sort the collection of index so they dont collapse on each other 
-      idx = sorted(idx, reverse = True)
-      for i in idx: 
-         self.featureSelected.pop(i)
-      # self.featureArray = self.featureArray - self.featureDeployed
+      self.remove_multiple_features(self.featureDeployed, self.featureSelected)
+     
 
    def reset_points(self, feature):
       feature.points = 0
@@ -169,6 +180,7 @@ class Backend:
       else: 
          return False 
 
+   
 
    # After Everything else #
    ################################################################################################
