@@ -60,7 +60,7 @@ class Backend:
    # if it comes through then +point on the fail rate of that feature
    # returns none if there is no bug
    def show_error(self):
-      feature_forError = featureSelected[pick_error()]
+      feature_forError = self.featureSelected[self.pick_error()]
       error_selected = feature_forError.error_messages
       error_chance = (error_selected.fail_weight + random.randint(2, 10))/2
       if error_chance > 5:
@@ -137,7 +137,7 @@ class Backend:
    # Production #
    ################################################################################################
    # bugs found 
-   def deployment_failure(feature):
+   def deployment_failure(self, feature):
       # the random is float for 1%-9% 
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
@@ -152,7 +152,8 @@ class Backend:
    # After every production, there is going to be the customer feedback, this section is basically for this.
    # using the devOp metrics to decide.
 
-   def customer_feedback():
+   def customer_feedback(self):
+      pass
       
 
    # Also, there will be an overview of the devop metrics, and a graph if possible? of the progress of the changing devOps
