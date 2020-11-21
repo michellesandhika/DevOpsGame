@@ -56,7 +56,8 @@ class Backend:
    def pick_error(self):
       failMax_idx = 0
       for i in range (1, len(self.featureSelected)):
-         if self.featureSelected[i].error_messages.fail_weight > self.featureSelected[failMax_idx].error_messages.fail_weight:
+        
+         if self.featureSelected[i].error_messages["fail_weight"] > self.featureSelected[failMax_idx].error_messages["fail_weight"]:
             failMax_idx = i
       return failMax_idx
           
@@ -67,9 +68,11 @@ class Backend:
       self.process_mapping()
       feature_forError = self.featureSelected[self.pick_error()]
       error_selected = feature_forError.error_messages
-      error_chance = (error_selected.fail_weight + random.randint(2, 10))/2
+      
+      error_chance = (error_selected["fail_weight"] + random.randint(2, 10))/2
       if error_chance > 5:
-         feature_forError.fail_rate = feature_forError.fail_rate + (error_chance.fail_weight/10)
+         feature_forError.fail_rate = feature_forError.fail_rate + (error_chance/10)
+         
          return error_selected
       else:
          return None
