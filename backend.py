@@ -59,23 +59,19 @@ class Backend:
                errorList.append([feature, error])
                feature.fail_rate += error["fail_weight"] / 10
       return errorList
-         
+
    
    def show_error(self):
       self.process_mapping()
       self.errorList = self.pick_errors()
-      
-
-
-   # to get the message error use show_error().messgage, and the solution with show_error().solution
-      
+            
    
    # apply the weights by the solution picked, return true if no more error need to select, false vice versa
    def solution_picked(self, selected_solution):
-      if len(self.errorList) == 0:
-         return True
       current = self.errorList.pop(0)
       current[0].fail_rate = current[0].fail_rate - (current[1]["solution"][selected_solution]['weight']/10)
+      if len(self.errorList) == 0:
+         return True
       return False
       #self.featureSelected[self.pick_error()].fail_rate = self.featureSelected[self.pick_error()].error_messages["solution"][selected_solution]["weight"]
 

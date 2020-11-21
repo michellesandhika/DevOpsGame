@@ -50,7 +50,7 @@ class MainWindow(Frame):
         if self.pageIndex == 0:
             self.page = Idea(self.window, self.backend) 
         elif self.pageIndex == 1:
-            self.page = Development(self.window, self.backend) 
+            self.page = Development(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 2:
             self.page = Testing(self.window, self.backend) 
         elif self.pageIndex == 3:
