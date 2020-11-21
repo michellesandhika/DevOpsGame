@@ -115,7 +115,9 @@ class Backend:
          feature.fail_rate = feature.fail_rate + 1-(0.9/len(self.featureSelected))
 
          # if it is not on order, give penalty that it would be harder
-         feature.fail_rate = abs(feature.id - self.round) * feature.fail_rate
+         penalty = (self.noFeatureDeployed - feature.id)/10
+         if penalty > 0:
+            feature.fail_rate = penalty * feature.fail_rate
    
    # dont need populate points, added points in the class - nic
    
@@ -189,6 +191,9 @@ class Backend:
       # reduce the time for the failed feature in the featureDeployed
       for feature in self.featureDeployed: 
          feature.time = feature.time / 2
+         
+      # add the number of featuresDeployed
+      self.noFeatureDeployed = self.noFeatureDeployed + len(deployed)
       
       # clear the selected array 
       self.featureSelected.clear()
