@@ -48,15 +48,15 @@ class MainWindow(Frame):
         self.pageIndex = 0 if self.pageIndex == self.numPage-1 else self.pageIndex + 1
         
         if self.pageIndex == 0:
-            self.page = Idea(self.window) 
+            self.page = Idea(self.window, self.backend) 
         elif self.pageIndex == 1:
-            self.page = Development(self.window) 
+            self.page = Development(self.window, self.backend) 
         elif self.pageIndex == 2:
-            self.page = Testing(self.window) 
+            self.page = Testing(self.window, self.backend) 
         elif self.pageIndex == 3:
-            self.page = Deployment(self.window) 
+            self.page = Deployment(self.window, self.backend) 
         elif self.pageIndex == 4:
-            self.page = Production(self.window) 
+            self.page = Production(self.window, self.backend) 
 
         
 
