@@ -40,8 +40,12 @@ class Backend:
    # need a function that changes the fail_rate to be higher or lower depending on the time it is chose to be developed.
    # this function maps the integer to the actual feature 
    def mapper(self, idx):
-      return self.feature_array[idx]
+      return self.featureArray[idx]
    
+   def process_mapping(self):
+      for i, process in enumerate(self.featureSelected):
+         self.featureSelected[i] = self.mapper(self.featureSelected[i])
+
    # Develop # 
    ###############################################################################################
    # the purpose of this stage is to show random errors and how to handle it in the middle of production
@@ -60,6 +64,7 @@ class Backend:
    # if it comes through then +point on the fail rate of that feature
    # returns none if there is no bug
    def show_error(self):
+      self.process_mapping()
       feature_forError = self.featureSelected[self.pick_error()]
       error_selected = feature_forError.error_messages
       error_chance = (error_selected.fail_weight + random.randint(2, 10))/2
