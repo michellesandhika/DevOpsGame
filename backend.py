@@ -228,7 +228,7 @@ class Backend:
       self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
       self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
 
-      self.devops.leadTime = 0 
+      self.devopMetrics.leadTime = 0 
       self.devopMetrics.failedDeployment = 0 
       self.devopMetrics.deploymentSize = 0
 
