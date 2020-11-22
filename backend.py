@@ -18,8 +18,8 @@ class Backend:
       self.point = 10 
       
       self.noFeatureDeployed = 0
-      self.devopMetrics = dclass()
-      self.currentMetrics = dclass()
+      self.devopMetrics = dclass.devOps()
+      self.currentMetrics = dclass.devOps()
 
  
       #read from json and turn to feature class. taken idea from ideas.py
@@ -216,6 +216,7 @@ class Backend:
    # using the devOp metrics to decide.
 
    def customer_feedback(self):
+      pass
       # if the current lead time is higher than ? point 
 
 
