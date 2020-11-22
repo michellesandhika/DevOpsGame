@@ -209,6 +209,9 @@ class Backend:
       # clear the selected array 
       self.featureSelected.clear()
       self.featureDeployed.clear()
+      
+   def returnMetrics(self):
+      return self.devopMetrics
 
    # After Everything else #
    ################################################################################################
@@ -218,22 +221,16 @@ class Backend:
    def customer_feedback(self):
       pass
       # if the current lead time is higher than ? point 
-
+      pass
 
       # if 
 
    
    def add_total_metrics(self):
-      self.devopMetrics.leadTime += self.currentMetrics.leadTime
-      self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
-      self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
-
-      self.devops.leadTime = 0 
-      self.devopMetrics.failedDeployment = 0 
-      self.devopMetrics.deploymentSize = 0
+      self.devopMetrics.append(self.currentMetrics)
+      self.currentMetrics = dclass()
       
-   def ending(self):
-      self.round = self.round + 1
+      
 
    # Also, there will be an overview of the devop metrics, and a graph if possible? of the progress of the changing devOps
    # dont forget to reset point list
@@ -242,8 +239,12 @@ class Backend:
    #################################################################################################
    def calculate_score(self):
       score = 0
+      
+      sum_placeholder = 0
       #30% for lead time
-      score = self.devopMetrics.leadTime
-      #50% for deployment failure
-      score = self.devopMetrics.failedDeployment
-      #20% for average failed per deploy?
+      for i in self.devopMetrics:
+         total_leadtime = total_leadtime + i.leadTime
+         total_deployfail = total_deployfail + i.failedDeployment
+      score = score + total_leadtime*0.3
+      score = score + total_deployfail*0.5
+      
