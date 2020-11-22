@@ -207,6 +207,9 @@ class Backend:
       # clear the selected array 
       self.featureSelected.clear()
       self.featureDeployed.clear()
+      
+   def returnMetrics(self):
+      return self.devopMetrics
 
    # After Everything else #
    ################################################################################################
@@ -215,7 +218,7 @@ class Backend:
 
    def customer_feedback(self):
       # if the current lead time is higher than ? point 
-
+      pass
 
       # if 
 
@@ -223,6 +226,7 @@ class Backend:
    def add_total_metrics(self):
       self.devopMetrics.append(self.currentMetrics)
       self.currentMetrics = dclass()
+      
       
 
    # Also, there will be an overview of the devop metrics, and a graph if possible? of the progress of the changing devOps
