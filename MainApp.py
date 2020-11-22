@@ -34,7 +34,7 @@ class MainWindow(Frame):
         self.window.pack_propagate(False)
 
         self.numPage = 5
-        self.page = Idea(self.window, self.backend)
+        self.page = Idea(self.window, self.backend, self.nextButton)
         self.pageIndex = 0
         self.page.pack(side='left', padx=10, pady=10)
 
@@ -48,13 +48,13 @@ class MainWindow(Frame):
         self.pageIndex = 0 if self.pageIndex == self.numPage-1 else self.pageIndex + 1
         
         if self.pageIndex == 0:
-            self.page = Idea(self.window, self.backend) 
+            self.page = Idea(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 1:
             self.page = Development(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 2:
             self.page = Testing(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 3:
-            self.page = Deployment(self.window, self.backend) 
+            self.page = Deployment(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 4:
             self.page = Production(self.window, self.backend) 
 
