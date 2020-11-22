@@ -8,6 +8,7 @@ import random
 class Backend:
    def __init__(self):
       self.featureArray = []
+      self.customer_feedback = []
       # this one store the index of the selected feature 
       self.featureSelected = []
       # to store the selected feature, for removing just remove the instance here
@@ -18,6 +19,7 @@ class Backend:
       
       self.noFeatureDeployed = 0
       self.devopMetrics = dclass()
+      self.currentMetrics = dclass()
 
  
       #read from json and turn to feature class. taken idea from ideas.py
@@ -25,7 +27,13 @@ class Backend:
       data = json.load(f)
       for i in data["features"]:
          a = fclass.feature(i)
-         self.featureArray.append(a) 
+         self.featureArray.append(a)
+
+      f = open("json/customer_feedback.json")
+      data = json.load(f)
+      for i in data: 
+         self.customer_feedback.append(i)
+         
          
    def returnFeatureClasses(self):
       return self.featureArray
@@ -80,7 +88,7 @@ class Backend:
    
    def add_leadtime(self):
       for feature in self.featureSelected:
-         devopMetrics.leadTime = devopMetrics.leadTime + feature.time
+         self.currentMetrics.leadTime = self.currentMetrics.leadTime + feature.lead_time
    
    def show_error(self):
       self.process_mapping()
@@ -190,7 +198,7 @@ class Backend:
       self.remove_multiple_features(deployed, self.featureArray)
       # reduce the time for the failed feature in the featureDeployed
       for feature in self.featureDeployed: 
-         feature.time = feature.time / 2
+         feature.lead_time = feature.lead_time / 2
          
       # add the number of featuresDeployed
       self.noFeatureDeployed = self.noFeatureDeployed + len(deployed)
@@ -205,8 +213,21 @@ class Backend:
    # using the devOp metrics to decide.
 
    def customer_feedback(self):
-      pass
+      # if the current lead time is higher than ? point 
 
+
+      # if 
+
+   
+   def add_total_metrics(self):
+      self.devopMetrics.leadTime += self.currentMetrics.leadTime
+      self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
+      self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
+
+      self.devops.leadTime = 0 
+      self.devopMetrics.failedDeployment = 0 
+      self.devopMetrics.deploymentSize = 0
+      
    def ending(self):
       self.round = self.round + 1
 
