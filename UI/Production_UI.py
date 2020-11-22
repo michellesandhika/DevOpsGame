@@ -4,3 +4,6 @@ class Production(tk.Label):
     def __init__(self, parent, backend):
         tk.Label.__init__(self, parent, width=160, height=130, background="white", text="Production")
         self.parent = parent
+        self.backend = backend
+        #self.backend.deploy()
+        print(self.backend.returnMetrics())
