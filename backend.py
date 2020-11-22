@@ -206,11 +206,25 @@ class Backend:
       
       # clear the selected array 
       self.featureSelected.clear()
-      self.featureDeployed.clear()
+    
       
    def returnMetrics(self):
       return self.devopMetrics
 
+   # return current metrics instead of the whole thing 
+   def return_current_metrics(self):
+      return self.currentMetrics
+
+   # call this after deploy()
+   def return_failed_features(self):
+      return self.featureDeployed
+   
+   # dont forget to call this at the end of the round to reset 
+   def reset(self):
+      self.currentMetrics.leadTime = 0 
+      self.currentMetrics.failedDeployment = 0 
+      self.currentMetrics.deploymentSize = 0
+      self.featureDeployed.clear()
    # After Everything else #
    ################################################################################################
    # After every production, there is going to be the customer feedback, this section is basically for this.
@@ -228,9 +242,7 @@ class Backend:
       self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
       self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
 
-      self.devopMetrics.leadTime = 0 
-      self.devopMetrics.failedDeployment = 0 
-      self.devopMetrics.deploymentSize = 0
+      
 
    def ending(self):
       self.round = self.round + 1
