@@ -18,7 +18,7 @@ class Backend:
       self.point = 10 
       
       self.noFeatureDeployed = 0
-      self.devopMetrics = []
+      self.devopMetrics = dclass()
       self.currentMetrics = dclass()
       
 
