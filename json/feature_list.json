@@ -15,7 +15,7 @@
                   {
                      "method":"switch to dynamodb",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":1
                   },
                   {
                      "method": "overhaul database structure",
@@ -104,7 +104,7 @@
                   {
                      "method": "work with third party UI companies to help improve it",
                      "affected_devOps": "lead_time",
-                     "weight": 2
+                     "weight": 5
                   }
                ]
             },
@@ -181,7 +181,7 @@
                "possibility": 0.6,
                "solution":[
                   {
-                     "method":" remove the 2-step verification",
+                     "method":"put more effort into checking the database",
                      "affected_devOps": "review",
                      "weight":1
                   },
@@ -200,12 +200,12 @@
                   {
                      "method":"research on new encryption method",
                      "affected_devOps": "review",
-                     "weight":5
+                     "weight":2
                   },
                   {
                      "method": "use older encryption system",
                      "affected_devOps": "lead_time",
-                     "weight": 2
+                     "weight": 3
                   }
                ]
             }

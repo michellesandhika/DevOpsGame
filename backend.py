@@ -2,31 +2,38 @@ import json
 import classes.feature_class as fclass
 import classes.devOps_class as dclass
 
-
 import random
 
 
 class Backend:
    def __init__(self):
       self.featureArray = []
+      self.customer_feedback = []
       # this one store the index of the selected feature 
       self.featureSelected = []
       # to store the selected feature, for removing just remove the instance here
       self.selected = []
       self.featureDeployed = []
-      # to store successfully deployed feature 
-      self.deployed = []
       # initial point 
       self.point = 10 
       
-      self.devopMetrics = dclass.devOps()
+      self.noFeatureDeployed = 0
+      self.devopMetrics = dclass()
+      self.currentMetrics = dclass()
+
  
       #read from json and turn to feature class. taken idea from ideas.py
       f = open("json/feature_list.json")
       data = json.load(f)
       for i in data["features"]:
          a = fclass.feature(i)
-         self.featureArray.append(a) 
+         self.featureArray.append(a)
+
+      f = open("json/customer_feedback.json")
+      data = json.load(f)
+      for i in data: 
+         self.customer_feedback.append(i)
+         
          
    def returnFeatureClasses(self):
       return self.featureArray
@@ -70,11 +77,7 @@ class Backend:
    ###############################################################################################
    # the purpose of this stage is to show random errors and how to handle it in the middle of production
 
-   def adjust_errors(self):
-      self.featureDeployed
-
    def pick_errors(self):
-      
       errorList = []
       for feature in self.featureSelected:
          for error in feature.error_messages:
@@ -85,7 +88,7 @@ class Backend:
    
    def add_leadtime(self):
       for feature in self.featureSelected:
-         devopMetrics.leadTime = devopMetrics.leadTime + feature.time
+         self.currentMetrics.leadTime = self.currentMetrics.leadTime + feature.lead_time
    
    def show_error(self):
       self.process_mapping()
@@ -116,9 +119,13 @@ class Backend:
    
    def calculate_failrate(self):
       for feature in self.featureSelected:
-         # modified it so that time affects harder on fail rate - nic
-         feature.fail_rate = ((random.randint(0,10) * feature.lead_time)/2 * feature.fail_rate)/10
+         #the more the feature is the more each will be likely to fail
+         feature.fail_rate = feature.fail_rate + 1-(0.9/len(self.featureSelected))
 
+         # if it is not on order, give penalty that it would be harder
+         penalty = (self.noFeatureDeployed - feature.id)/10
+         if penalty > 0:
+            feature.fail_rate = penalty * feature.fail_rate
    
    # dont need populate points, added points in the class - nic
    
@@ -141,7 +148,6 @@ class Backend:
    def point_check(self):
       return self.point
             
-    
    def new_failrate(self, feature): 
       # each point worth 5% flat reduction 
       feature.fail_rate = feature.fail_rate - feature.points * 0.05      
@@ -156,13 +162,12 @@ class Backend:
          self.featureDeployed.append(feature)
                
    # if they decide to deploy, then remove the feature from the feature_list
-   
-   def remove_feature(self):
+   # to remove the deployed feature from the featureSelected
+   def remove_featureSelected(self):
       # a list of index of what to remove 
       idx = []
       self.remove_multiple_features(self.featureDeployed, self.featureSelected)
      
-
    def reset_points(self, feature):
       feature.points = 0
    
@@ -179,10 +184,31 @@ class Backend:
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
       if fail < feature.fail_rate * 100: 
-         return True
+         self.devopsMetrics.failedDeployment = self.devopsMetrics.failedDeployment + 1
+         return True # the feature failed
       else: 
          return False 
    
+   def deploy(self):
+      deployed = []
+      for i in self.featureDeployed:
+         if not self.deployment_failure(i): 
+            deployed.append(i)
+      
+      # remove the feature from the list 
+      self.remove_multiple_features(deployed, self.featureDeployed)
+      # remove it from the featureArray too
+      self.remove_multiple_features(deployed, self.featureArray)
+      # reduce the time for the failed feature in the featureDeployed
+      for feature in self.featureDeployed: 
+         feature.lead_time = feature.lead_time / 2
+         
+      # add the number of featuresDeployed
+      self.noFeatureDeployed = self.noFeatureDeployed + len(deployed)
+      
+      # clear the selected array 
+      self.featureSelected.clear()
+      self.featureDeployed.clear()
 
    # After Everything else #
    ################################################################################################
@@ -190,11 +216,33 @@ class Backend:
    # using the devOp metrics to decide.
 
    def customer_feedback(self):
-      pass
+      # if the current lead time is higher than ? point 
+
+
+      # if 
+
+   
+   def add_total_metrics(self):
+      self.devopMetrics.leadTime += self.currentMetrics.leadTime
+      self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
+      self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
+
+      self.devops.leadTime = 0 
+      self.devopMetrics.failedDeployment = 0 
+      self.devopMetrics.deploymentSize = 0
       
+   def ending(self):
+      self.round = self.round + 1
 
    # Also, there will be an overview of the devop metrics, and a graph if possible? of the progress of the changing devOps
    # dont forget to reset point list
 
    # After the game ends #
    #################################################################################################
+   def calculate_score(self):
+      score = 0
+      #30% for lead time
+      score = self.devopMetrics.leadTime
+      #50% for deployment failure
+      score = self.devopMetrics.failedDeployment
+      #20% for average failed per deploy?
