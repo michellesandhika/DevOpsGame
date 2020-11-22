@@ -18,8 +18,9 @@ class Backend:
       self.point = 10 
       
       self.noFeatureDeployed = 0
-      self.devopMetrics = dclass()
+      self.devopMetrics = []
       self.currentMetrics = dclass()
+      
 
  
       #read from json and turn to feature class. taken idea from ideas.py
@@ -206,6 +207,9 @@ class Backend:
       # clear the selected array 
       self.featureSelected.clear()
       self.featureDeployed.clear()
+      
+   def returnMetrics(self):
+      return self.devopMetrics
 
    # After Everything else #
    ################################################################################################
@@ -214,7 +218,7 @@ class Backend:
 
    def customer_feedback(self):
       # if the current lead time is higher than ? point 
-
+      pass
 
       # if 
 
@@ -238,8 +242,12 @@ class Backend:
    #################################################################################################
    def calculate_score(self):
       score = 0
+      
+      sum_placeholder = 0
       #30% for lead time
-      score = self.devopMetrics.leadTime
-      #50% for deployment failure
-      score = self.devopMetrics.failedDeployment
-      #20% for average failed per deploy?
+      for i in self.devopMetrics:
+         total_leadtime = total_leadtime + i.leadTime
+         total_deployfail = total_deployfail + i.failedDeployment
+      score = score + total_leadtime*0.3
+      score = score + total_deployfail*0.5
+      
