@@ -42,7 +42,7 @@ class Backend:
    # To remove multiple feature from list. remove is which array you want to remove
    def remove_multiple_features(self, key, remove): 
       idx = []
-      print(key)
+      #print(key)
       for i in key: 
          for j in range (0, len(remove)): 
             if i.feature_name == remove[j].feature_name:
