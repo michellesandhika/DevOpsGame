@@ -2,7 +2,7 @@
    "scenario":"Airbnb has too much users and their servers does not hold, Therefore they want to swith to a different server!",
    "features": [
       {
-         "id": 2,
+         "id": 0,
          "feature_name":"Give more options to hosts",
          "time": 5,
          "fail_rate": 0.1,
@@ -86,7 +86,7 @@
          ]
       },
       {
-         "id": 3,
+         "id": 2,
          "feature_name":"improve data dashboard for hosts",
          "time": 4,
          "fail_rate": 0.1,
@@ -128,7 +128,7 @@
          ]
       },
       {
-         "id": 4,
+         "id": 3,
          "feature_name":" more detail for booking history for users",
          "time": 4,
          "fail_rate": 0.1,
@@ -170,7 +170,7 @@
          ]
       },
       {
-         "id": 0,
+         "id": 4,
          "feature_name":"Overhaul Profile Creation",
          "time": 3,
          "fail_rate": 0.1,
