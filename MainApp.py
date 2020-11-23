@@ -10,6 +10,8 @@ from UI.Development_UI import Development
 from UI.Testing_UI import Testing
 from UI.Deployment_UI import Deployment
 from UI.Production_UI import Production
+from UI.Result_UI import Result
+
 
 class MainWindow(Frame):
 
@@ -33,7 +35,7 @@ class MainWindow(Frame):
         self.window.pack(side='left')
         self.window.pack_propagate(False)
 
-        self.numPage = 5
+        self.numPage = 6
         self.page = Idea(self.window, self.backend, self.nextButton)
         self.pageIndex = 0
         self.page.pack(side='left', padx=10, pady=10)
@@ -43,20 +45,26 @@ class MainWindow(Frame):
         #####self.popup_showinfo()
 
     def nextPage(self):
-        self.navi.switch()
         self.page.destroy()
         self.pageIndex = 0 if self.pageIndex == self.numPage-1 else self.pageIndex + 1
         
         if self.pageIndex == 0:
+            self.navi.switch()
             self.page = Idea(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 1:
+            self.navi.switch()
             self.page = Development(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 2:
+            self.navi.switch()
             self.page = Testing(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 3:
+            self.navi.switch()
             self.page = Deployment(self.window, self.backend, self.nextButton) 
         elif self.pageIndex == 4:
+            self.navi.switch()
             self.page = Production(self.window, self.backend) 
+        elif self.pageIndex == 5:
+            self.page = Result(self.window, self.backend) 
 
         
 
