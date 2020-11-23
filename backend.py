@@ -185,14 +185,10 @@ class Backend:
       # the random is float for 1%-9% 
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
-<<<<<<< HEAD
-      if fail < feature.fail_rate * 100: 
-=======
       if feature.fail_rate > 0.05 :
          faildeploy_rate = feature.fail_rate * 1.5
           
       if fail/10 < faildeploy_rate: 
->>>>>>> develop
          self.devopMetrics.failedDeployment = self.devopMetrics.failedDeployment + 1
          return True # the feature failed
       else: 
