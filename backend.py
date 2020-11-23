@@ -237,9 +237,9 @@ class Backend:
    # using the devOp metrics to decide.
 
    def customer_feedback(self):
-      # if the current lead time is higher than ? point 
-      pass
-
+      if self.currentMetrics.failedDeployment > 3:
+         self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
+         return customer_feedback["server_crash"]
       # if 
 
    
@@ -267,3 +267,7 @@ class Backend:
          total_deployfail = total_deployfail + i.failedDeployment
       score = score + total_leadtime*0.3
       score = score + total_deployfail*0.5
+
+   def wrapup(self):
+      calculate_score()
+      
