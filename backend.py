@@ -278,3 +278,12 @@ class Backend:
 
  
       
+   def get_total_metrics(self):
+      
+      temp = dclass.devOps()
+      for i in self.devopMetrics:
+         temp.leadTime += i.leadTime
+         temp.failedDeployment += i.failedDeployment
+         temp.deploymentSize += i.deploymentSize
+
+      return temp 

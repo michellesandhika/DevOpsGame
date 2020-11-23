@@ -17,7 +17,7 @@ class Result(tk.Label):
         self.feedback = self.backend.get_customer_feedback() # pop up
         showinfo(self.feedback)
 
-        self.metrics = self.backend.devopMetrics
+        self.metrics = self.backend.get_total_metrics()
         self.result = tk.Label(self, text=
         '''
         Round {} result:\n\n
