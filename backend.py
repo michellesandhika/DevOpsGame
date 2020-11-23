@@ -184,7 +184,7 @@ class Backend:
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
       if fail < feature.fail_rate * 100: 
-         self.devopsMetrics.failedDeployment = self.devopsMetrics.failedDeployment + 1
+         self.devopMetrics.failedDeployment = self.devopMetrics.failedDeployment + 1
          return True # the feature failed
       else: 
          return False 
