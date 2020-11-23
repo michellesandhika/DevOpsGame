@@ -6,5 +6,8 @@
    "server_crash":{
       "message": "There was too much failed deployment which lead to a server crash!",
       "lead_time": 10
+   },
+   "nice": {
+      "message": "the user are happy!"
    }
 }

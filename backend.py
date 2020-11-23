@@ -17,7 +17,8 @@ class Backend:
       # initial point 
       self.point = 10 
       self.round = 0
-      
+      self.score = 0
+
       self.noFeatureDeployed = 0
       self.devopMetrics = dclass.devOps()
       self.currentMetrics = dclass.devOps()
@@ -242,7 +243,9 @@ class Backend:
    def get_customer_feedback(self):
       if self.currentMetrics.failedDeployment > 3:
          self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
-         return customer_feedback["server_crash"]
+         return self.customer_feedback["server_crash"].message 
+      else:
+         return self.customer_feedback["nice"].message
       # if 
 
    
@@ -271,6 +274,5 @@ class Backend:
       self.score = self.score + total_leadtime*0.3
       self.score = self.score + total_deployfail*0.5
 
-   def wrapup(self):
-      calculate_score()
+ 
       
