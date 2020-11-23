@@ -20,7 +20,7 @@ class Backend:
       self.score = 0
 
       self.noFeatureDeployed = 0
-      self.devopMetrics = dclass.devOps()
+      self.devopMetrics = []
       self.currentMetrics = dclass.devOps()
 
  
@@ -220,7 +220,7 @@ class Backend:
     
       
    def returnMetrics(self):
-      return self.devopMetrics
+      return self.currentMetrics
 
    # return current metrics instead of the whole thing 
    def return_current_metrics(self):
@@ -242,8 +242,6 @@ class Backend:
    # After every production, there is going to be the customer feedback, this section is basically for this.
    # using the devOp metrics to decide.
 
-
-
    def get_customer_feedback(self):
 
       print(self.customer_feedback)
@@ -256,9 +254,7 @@ class Backend:
 
    
    def add_total_metrics(self):
-      self.devopMetrics.leadTime += self.currentMetrics.leadTime
-      self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
-      self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
+      self.devopMetrics.append(self.currentMetrics)
 
 
    def ending(self):
