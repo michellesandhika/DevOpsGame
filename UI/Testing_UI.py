@@ -55,7 +55,7 @@ class Testing(tk.Label):
 
             sum += int(self.entryList[i].get())
         
-        if sum == 10:
+        if sum <= 10:
             return True
         return False
     
