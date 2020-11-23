@@ -154,6 +154,8 @@ class Backend:
    def new_failrate(self, feature): 
       # each point worth 5% flat reduction 
       feature.fail_rate = feature.fail_rate - feature.points * 0.05 
+      if feature.fail_rate <0:
+         feature.fail_rate = 0
       self.currentMetrics.leadTime =  self.currentMetrics.leadTime + feature.points   
 
    # Deployment #
@@ -187,7 +189,7 @@ class Backend:
       # the random is float for 1%-9% 
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
-      if feature.fail_rate > 0.05 :
+      if feature.fail_rate > 0.2 :
          faildeploy_rate = feature.fail_rate * 1.5
           
       if fail/10 < faildeploy_rate: 
