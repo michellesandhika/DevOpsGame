@@ -54,7 +54,7 @@ class Deployment(tk.Label):
             self.deployButtons[i].configure(bg="white")
 
 
-        if (len(self.backend.featureDeployed) > 0):
+        if (self.selected.count(True) > 0):
             self.nextButton['state'] = tk.NORMAL
         else:
             self.nextButton['state'] = tk.DISABLED
