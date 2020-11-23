@@ -241,12 +241,17 @@ class Backend:
    # After every production, there is going to be the customer feedback, this section is basically for this.
    # using the devOp metrics to decide.
 
+
+
    def get_customer_feedback(self):
+
+      print(self.customer_feedback)
       if self.currentMetrics.failedDeployment > 3:
          self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
-         return self.customer_feedback["server_crash"].message 
+         
+         return self.customer_feedback[0]["server_crash"].message 
       else:
-         return self.customer_feedback["nice"].message
+         return self.customer_feedback[0]["nice"].message
       # if 
 
    
