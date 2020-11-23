@@ -88,6 +88,7 @@ class Backend:
       return errorList
    
    def add_leadtime(self):
+      self.currentMetrics.deploymentSize = len(featureSelected) 
       for feature in self.featureSelected:
          self.currentMetrics.leadTime = self.currentMetrics.leadTime + feature.lead_time
    
@@ -148,7 +149,8 @@ class Backend:
             
    def new_failrate(self, feature): 
       # each point worth 5% flat reduction 
-      feature.fail_rate = feature.fail_rate - feature.points * 0.05      
+      feature.fail_rate = feature.fail_rate - feature.points * 0.05 
+      self.currentMetrics.lead_time =  self.currentMetrics.lead_time + feature.points   
 
    # Deployment #
    ################################################################################################
@@ -181,7 +183,10 @@ class Backend:
       # the random is float for 1%-9% 
       fail = random.uniform(0,10) 
       # im assuming failure rate is always < 1
-      if fail < feature.fail_rate * 100: 
+      if feature.fail_rate > 0.05 :
+         faildeploy_rate = feature.fail_rate * 1.5
+          
+      if fail/10 < faildeploy_rate: 
          self.devopMetrics.failedDeployment = self.devopMetrics.failedDeployment + 1
          return True # the feature failed
       else: 
@@ -225,6 +230,7 @@ class Backend:
       self.currentMetrics.failedDeployment = 0 
       self.currentMetrics.deploymentSize = 0
       self.featureDeployed.clear()
+   
    # After Everything else #
    ################################################################################################
    # After every production, there is going to be the customer feedback, this section is basically for this.
@@ -242,7 +248,6 @@ class Backend:
       self.devopMetrics.failedDeployment += self.currentMetrics.failedDeployment
       self.devopMetrics.deploymentSize += self.currentMetrics.deploymentSize 
 
-      
 
    def ending(self):
       self.round = self.round + 1
@@ -262,4 +267,3 @@ class Backend:
          total_deployfail = total_deployfail + i.failedDeployment
       score = score + total_leadtime*0.3
       score = score + total_deployfail*0.5
-      
