@@ -25,11 +25,6 @@ class Idea(tk.Label):
                             command=lambda i=i:self.selectButton(i)))
             self.button[i].pack(anchor="w", padx=20, pady=5)
 
-        self.check = tk.Button(self, text="show selected (temporary)",
-                            width=50, height=2, font=self.myFont, bg="white",
-                            command=self.showSelected)
-        self.check.pack(anchor="w", padx=20, pady=5)
-
     def selectButton(self, i):
         for j in range (len(self.backend.returnFeatureClasses())):
             if self.button[j]["state"] == tk.DISABLED:
@@ -54,6 +49,3 @@ class Idea(tk.Label):
 
         self.backend.process_selected(i)
 
-
-    def showSelected(self):
-        print(self.backend.featureSelected)

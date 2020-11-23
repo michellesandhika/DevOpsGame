@@ -270,3 +270,4 @@ class Backend:
          total_deployfail = total_deployfail + i.failedDeployment
       score = score + total_leadtime*0.3
       score = score + total_deployfail*0.5
+      return score
