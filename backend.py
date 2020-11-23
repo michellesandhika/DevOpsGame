@@ -34,7 +34,7 @@ class Backend:
       f = open("json/customer_feedback.json")
       data = json.load(f)
       for i in data: 
-         self.customer_feedback.append(i)
+         self.customer_feedback.append(data[i])
          
          
    def returnFeatureClasses(self):
@@ -189,10 +189,10 @@ class Backend:
       # im assuming failure rate is always < 1
       if feature.fail_rate > 0.05 :
          faildeploy_rate = feature.fail_rate * 1.5
-          
-      if fail/10 < faildeploy_rate: 
-         self.currentMetrics.failedDeployment = self.currentMetrics.failedDeployment + 1
-         return True # the feature failed
+         if fail/10 < faildeploy_rate: 
+            self.currentMetrics.failedDeployment = self.currentMetrics.failedDeployment + 1
+            return True # the feature failed
+         return False
       else: 
          return False 
    
@@ -248,14 +248,9 @@ class Backend:
       if self.currentMetrics.failedDeployment > 3:
          self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
          
-         return self.customer_feedback[0]["server_crash"].message 
+         return self.customer_feedback[1]["message"] 
       else:
-<<<<<<< HEAD
-         return self.customer_feedback[0]["nice"].message
-      # if 
-=======
-         return self.customer_feedback["nice"].message
->>>>>>> 1171f59c22e4de496502f7269f76e87ac804508e
+         return self.customer_feedback[2]["message"]
 
    
    def add_total_metrics(self):
