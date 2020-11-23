@@ -16,6 +16,7 @@ class Backend:
       self.featureDeployed = []
       # initial point 
       self.point = 10 
+      self.round = 0
       
       self.noFeatureDeployed = 0
       self.devopMetrics = dclass.devOps()
@@ -238,7 +239,7 @@ class Backend:
    # After every production, there is going to be the customer feedback, this section is basically for this.
    # using the devOp metrics to decide.
 
-   def customer_feedback(self):
+   def get_customer_feedback(self):
       if self.currentMetrics.failedDeployment > 3:
          self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
          return customer_feedback["server_crash"]
@@ -260,15 +261,15 @@ class Backend:
    # After the game ends #
    #################################################################################################
    def calculate_score(self):
-      score = 0
+      self.score = 0
       
       sum_placeholder = 0
       #30% for lead time
       for i in self.devopMetrics:
          total_leadtime = total_leadtime + i.leadTime
          total_deployfail = total_deployfail + i.failedDeployment
-      score = score + total_leadtime*0.3
-      score = score + total_deployfail*0.5
+      self.score = self.score + total_leadtime*0.3
+      self.score = self.score + total_deployfail*0.5
 
    def wrapup(self):
       calculate_score()
