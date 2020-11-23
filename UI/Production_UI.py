@@ -16,7 +16,7 @@ class Production(tk.Label):
         self.result = tk.Label(self, text=
         '''
         Results:\n\n
-            Affected Metrics:
+            Devops metrics for this round:
                 \n\t\tleadtime: {}
                 \n\t\tfailed deployment: {}
                 \n\t\tdeployment size: {} \n\n
