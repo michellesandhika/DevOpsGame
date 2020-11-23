@@ -152,7 +152,7 @@ class Backend:
    def new_failrate(self, feature): 
       # each point worth 5% flat reduction 
       feature.fail_rate = feature.fail_rate - feature.points * 0.05 
-      self.currentMetrics.lead_time =  self.currentMetrics.lead_time + feature.points   
+      self.currentMetrics.leadTime =  self.currentMetrics.leadTime + feature.points   
 
    # Deployment #
    ################################################################################################
