@@ -34,7 +34,7 @@ class Backend:
       f = open("json/customer_feedback.json")
       data = json.load(f)
       for i in data: 
-         self.customer_feedback.append(i)
+         self.customer_feedback.append(data[i])
          
          
    def returnFeatureClasses(self):
@@ -191,10 +191,10 @@ class Backend:
       # im assuming failure rate is always < 1
       if feature.fail_rate > 0.2 :
          faildeploy_rate = feature.fail_rate * 1.5
-          
-      if fail/10 < faildeploy_rate: 
-         self.currentMetrics.failedDeployment = self.currentMetrics.failedDeployment + 1
-         return True # the feature failed
+         if fail/10 < faildeploy_rate: 
+            self.currentMetrics.failedDeployment = self.currentMetrics.failedDeployment + 1
+            return True # the feature failed
+         return False
       else: 
          return False 
    
@@ -242,12 +242,17 @@ class Backend:
    # After every production, there is going to be the customer feedback, this section is basically for this.
    # using the devOp metrics to decide.
 
+
+
    def get_customer_feedback(self):
+
+      print(self.customer_feedback)
       if self.currentMetrics.failedDeployment > 3:
          self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
-         return self.customer_feedback["server_crash"].message 
+         
+         return self.customer_feedback[1]["message"] 
       else:
-         return self.customer_feedback["nice"].message
+         return self.customer_feedback[2]["message"]
 
    
    def add_total_metrics(self):
