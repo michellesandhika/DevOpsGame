@@ -192,6 +192,7 @@ class Backend:
           
       if fail/10 < faildeploy_rate: 
          self.devopMetrics.failedDeployment = self.devopMetrics.failedDeployment + 1
+         self.currentMetrics.failedDeployment += 1
          return True # the feature failed
       else: 
          return False 
