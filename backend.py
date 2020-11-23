@@ -191,8 +191,7 @@ class Backend:
          faildeploy_rate = feature.fail_rate * 1.5
           
       if fail/10 < faildeploy_rate: 
-         self.devopMetrics.failedDeployment = self.devopMetrics.failedDeployment + 1
-         self.currentMetrics.failedDeployment += 1
+         self.currentMetrics.failedDeployment = self.currentMetrics.failedDeployment + 1
          return True # the feature failed
       else: 
          return False 
@@ -247,7 +246,6 @@ class Backend:
          return self.customer_feedback["server_crash"].message 
       else:
          return self.customer_feedback["nice"].message
-      # if 
 
    
    def add_total_metrics(self):
