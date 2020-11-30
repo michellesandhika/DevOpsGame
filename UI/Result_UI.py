@@ -15,7 +15,7 @@ class Result(tk.Label):
 
 
         self.feedback = self.backend.get_customer_feedback() # pop up
-        showinfo(self.feedback)
+        showinfo("User feedback", self.feedback)
 
         self.metrics = self.backend.get_total_metrics()
         self.result = tk.Label(self, text=
@@ -28,9 +28,9 @@ class Result(tk.Label):
             
         '''.format( self.backend.round,
                     self.backend.score,
-                    self.metrics.deploymentSize,
                     self.metrics.leadTime,
-                    self.metrics.failedDeployment
+                    self.metrics.failedDeployment,
+                    self.metrics.deploymentSize
                     ),
         width=70, height=30, font=self.myFont,
          background="white", justify=tk.LEFT, anchor="w")

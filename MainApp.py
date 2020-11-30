@@ -42,7 +42,7 @@ class MainWindow(Frame):
 
         ## displays popup message about airbnb scenario
         
-        #####self.popup_showinfo()
+        self.popup_showinfo()
 
     def nextPage(self):
         self.page.destroy()
