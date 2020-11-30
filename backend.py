@@ -89,7 +89,7 @@ class Backend:
       return errorList
    
    def add_leadtime(self):
-      self.currentMetrics.deploymentSize = len(featureSelected) 
+      # self.currentMetrics.deploymentSize = len(featureSelected)    
       for feature in self.featureSelected:
          self.currentMetrics.leadTime = self.currentMetrics.leadTime + feature.lead_time
    
@@ -192,7 +192,7 @@ class Backend:
       if feature.fail_rate > 0.2 :
          faildeploy_rate = feature.fail_rate * 1.5
          if fail/10 < faildeploy_rate: 
-            self.currentMetrics.failedDeployment = self.currentMetrics.failedDeployment + 1
+            # self.currentMetrics.failedDeployment += 1
             return True # the feature failed
          return False
       else: 
@@ -214,7 +214,8 @@ class Backend:
          
       # add the number of featuresDeployed
       self.noFeatureDeployed = self.noFeatureDeployed + len(deployed)
-      
+      self.currentMetrics.failedDeployment = len(self.featureDeployed)
+      self.currentMetrics.deploymentSize = len(deployed)
       # clear the selected array 
       self.featureSelected.clear()
     
@@ -232,10 +233,12 @@ class Backend:
    
    # dont forget to call this at the end of the round to reset 
    def reset(self):
-      self.currentMetrics.leadTime = 0 
-      self.currentMetrics.failedDeployment = 0 
-      self.currentMetrics.deploymentSize = 0
+      # self.currentMetrics.leadTime = 0 
+      # self.currentMetrics.failedDeployment = 0 
+      # self.currentMetrics.deploymentSize = 0
       self.featureDeployed.clear()
+      self.featureSelected.clear()
+      self.currentMetrics = dclass.devOps()
    
    # After Everything else #
    ################################################################################################
@@ -284,6 +287,8 @@ class Backend:
       for i in self.devopMetrics:
          temp.leadTime += i.leadTime
          temp.failedDeployment += i.failedDeployment
+         print(self.currentMetrics.deploymentSize)
+         print(i.leadTime, i.deploymentSize, i.failedDeployment)
          temp.deploymentSize += i.deploymentSize
 
       print(temp.failedDeployment)
