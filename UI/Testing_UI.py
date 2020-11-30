@@ -28,16 +28,18 @@ class Testing(tk.Label):
                 width=80, height=3, font=self.myFont,
                 background="white")) 
             self.entryList.append(tk.Entry(self, bd=2, width=20, validate='all', validatecommand=(self.vcmd, '%P')))
-            self.entryList[i].insert(0,'0')
 
             self.featureList[i].pack(anchor="nw", padx=10, pady=5)
             self.entryList[i].pack(anchor="ne", padx=10, pady=5)
+            self.entryList[i].insert(0,'0')
+
 
         self.confirmButton = tk.Button(self, text="Confirm Allocation",
                             width=20, height=2, font=self.myFont, bg="white",
                             command=self.confirm)
         self.confirmButton.pack(anchor="se", pady=10)
 
+        
 
     def callback(self, P):
         if (str.isdigit(P) and int(P) <= 10) or P == "":

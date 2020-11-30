@@ -57,6 +57,8 @@ class MainWindow(Frame):
         elif self.pageIndex == 2:
             self.navi.switch()
             self.page = Testing(self.window, self.backend, self.nextButton) 
+            self.master.iconify()
+            self.master.deiconify()
         elif self.pageIndex == 3:
             self.navi.switch()
             self.page = Deployment(self.window, self.backend, self.nextButton) 
