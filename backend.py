@@ -123,7 +123,7 @@ class Backend:
    def calculate_failrate(self):
       for feature in self.featureSelected:
          #the more the feature is the more each will be likely to fail
-         feature.fail_rate = feature.fail_rate + 1-(0.9/len(self.featureSelected))
+         feature.fail_rate = feature.fail_rate + 0.7-(0.9/len(self.featureSelected))
 
          # if it is not on order, give penalty that it would be harder
          penalty = (self.noFeatureDeployed - feature.id)/10
@@ -245,8 +245,8 @@ class Backend:
    def get_customer_feedback(self):
 
       print(self.customer_feedback)
-      if self.currentMetrics.failedDeployment > 3:
-         self.currentMetrics.lead_time = self.currentMetrics.lead_time + 10
+      if self.currentMetrics.failedDeployment >= 1:
+         self.currentMetrics.leadTime = self.currentMetrics.leadTime + 10
          
          return self.customer_feedback[1]["message"] 
       else:
@@ -286,4 +286,5 @@ class Backend:
          temp.failedDeployment += i.failedDeployment
          temp.deploymentSize += i.deploymentSize
 
+      print(temp.failedDeployment)
       return temp 
