@@ -251,10 +251,14 @@ class Backend:
    def get_customer_feedback(self):
 
       print(self.customer_feedback)
-      if self.currentMetrics.failedDeployment >= 1:
+      if self.currentMetrics.failedDeployment >= 2:
          self.currentMetrics.leadTime = self.currentMetrics.leadTime + 10
          
-         return self.customer_feedback[1]["message"] 
+         return self.customer_feedback[1]["message"]
+      elif self.currentMetrics.failedDeployment == 1: 
+         self.currentMetrics.leadTime = self.currentMetrics.leadTime + 5 
+         
+         return self.customer_feedback[0]["message"]
       else:
          return self.customer_feedback[2]["message"]
 
