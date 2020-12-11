@@ -129,6 +129,9 @@ class Backend:
          penalty = (self.noFeatureDeployed - feature.id)/10
          if penalty > 0:
             feature.fail_rate = penalty * feature.fail_rate
+
+         if feature.fail_rate < 0: 
+            feature.fail_rate = 0
    
    # dont need populate points, added points in the class - nic
    
