@@ -7,6 +7,7 @@ import random
 
 class Backend:
    def __init__(self):
+      self.rating = 0
       self.featureArray = []
       self.customer_feedback = []
       # this one store the index of the selected feature 
@@ -236,9 +237,6 @@ class Backend:
    
    # dont forget to call this at the end of the round to reset 
    def reset(self):
-      # self.currentMetrics.leadTime = 0 
-      # self.currentMetrics.failedDeployment = 0 
-      # self.currentMetrics.deploymentSize = 0
       self.featureDeployed.clear()
       self.featureSelected.clear()
       self.currentMetrics = dclass.devOps()
@@ -249,18 +247,25 @@ class Backend:
    # using the devOp metrics to decide.
 
    def get_customer_feedback(self):
-
-      print(self.customer_feedback)
+      
       if self.currentMetrics.failedDeployment >= 2:
-         self.currentMetrics.leadTime = self.currentMetrics.leadTime + 10
-         
-         return self.customer_feedback[1]["message"]
-      elif self.currentMetrics.failedDeployment == 1: 
-         self.currentMetrics.leadTime = self.currentMetrics.leadTime + 5 
-         
-         return self.customer_feedback[0]["message"]
+         self.currentMetrics.leadTime = self.currentMetrics.leadTime + self.customer_feedback["server_crash"]["lead_time"]
+         return self.customer_feedback["server_crash"]["message"]
+      
+      elif self.currentMetrics.deploymentSize >= 2: 
+         self.rating = self.rating + self.customer_feedback["many_feature"]["rating"]
+         return self.customer_feedback["many_feature"]["message"]
+      
+      elif self.currentMetrics.leadTime >= 10:
+         self.rating = self.rating + self.customer_feedback["long_time"]["rating"]
+         return self.customer_feedback["long_time"]["message"]
+      
+      elif random.uniform(0,1)> 0.9:
+         self.currentMetrics.leadTime = self.currentMetrics.leadTime + self.customer_feedback["requirement_diff"]["lead_time"]
+         return self.customer_feedback["requirement_diff"]["message"]
       else:
-         return self.customer_feedback[2]["message"]
+         self.rating = self.rating + self.customer_feedback["happy"]["rating"]
+         return self.customer_feedback["happy"]["message"]
 
    
    def add_total_metrics(self):
@@ -276,15 +281,14 @@ class Backend:
    # After the game ends #
    #################################################################################################
    def calculate_score(self):
-      self.score = 0
-      
-      sum_placeholder = 0
-      #30% for lead time
+      self.score = 100
+           
       for i in self.devopMetrics:
          total_leadtime = total_leadtime + i.leadTime
          total_deployfail = total_deployfail + i.failedDeployment
-      self.score = self.score + total_leadtime*0.3
-      self.score = self.score + total_deployfail*0.5
+      self.score = self.score - total_leadtime/100 * 20
+      self.score = self.score - total_deployfail/10 * 60
+      self.score = self.score + self.rating*10 * 0.2
 
  
       

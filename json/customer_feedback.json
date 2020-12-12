@@ -1,13 +1,22 @@
 {
-   "bugs": {
-      "message": "Users are disappointed of the product due to too many bugs",
-      "lead_time": 5
+   "many_feature": {
+      "message": "Users are happy that there is a lot of feature at once! Increase Rating",
+      "rating": 2
+   },
+   "long_time":{
+      "message": "Users are sad that it takes a long time to have a new feature. Decreased rating",
+      "rating": -2
    },
    "server_crash":{
-      "message": "There was too much failed deployment which lead to a server crash!",
+      "message": "There was too much failed deployment which lead to a server crash! Time is needed to fix it. Added lead time.",
       "lead_time": 10
    },
-   "nice": {
-      "message": "the user are happy!"
+   "requirement_diff":{
+      "message": "The user requirement is different from what is expected and they demand a revamp. Lead time added to change this requirement",
+      "lead_time": 5
+   }, 
+   "happy":{
+      "message": "User did not find anything wrong with it! Yay! Added ratings",
+      "ratings": 2
    }
 }
